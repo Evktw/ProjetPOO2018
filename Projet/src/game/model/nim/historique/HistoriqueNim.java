@@ -20,7 +20,6 @@ public class HistoriqueNim {
         this.listMoves = this.getListMoves();
         this.winner = this.listMoves.get(listMoves.size()-1).getPlayerName();
         this.gameId = id;
-        toto
     }
 
     /**
