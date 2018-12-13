@@ -15,8 +15,7 @@ public abstract class Player {
     /**
      * Constructeur de la classe Joueur
      * @param name
-     * @param age
-     * @param isHuman
+     * @param game
      */
     Player(String name, Game game)
     {
