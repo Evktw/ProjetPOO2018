@@ -43,16 +43,16 @@ public abstract class Player {
         return nbGame;
     }
 
-    public void setNbGame(int nbGame) {
-        this.nbGame = nbGame;
+    public void incrementNbGame() {
+        this.nbGame++;
     }
 
     public int getGameWin() {
         return gameWin;
     }
 
-    public void setGameWin(int gameWin) {
-        this.gameWin = gameWin;
+    public void incrementGameWin() {
+        this.gameWin++;
     }
 
     public Game getGame() {
@@ -61,14 +61,6 @@ public abstract class Player {
 
     public void setGame(Game game) {
         this.game = game;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean isActive) {
-        this.active = isActive;
     }
     
     
