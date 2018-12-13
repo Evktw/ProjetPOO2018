@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.model.common;
+package game.model.common.player;
 
-import game.model.common.player.Player;
 
 /**
  *
@@ -52,7 +51,7 @@ public class testJoueur
         System.out.println("\n \n \n \n");
         */
         
-        Player.CreateListOfPlayers();
+        
         
         
         

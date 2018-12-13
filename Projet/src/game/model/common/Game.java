@@ -5,10 +5,10 @@
  */
 package game.model.common;
 
+import game.model.common.player.Cpu;
+import game.model.common.player.Human;
 import game.model.common.player.Player;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,70 +16,96 @@ import java.util.Scanner;
  *
  * @author evktw
  */
-public class Game implements Comparable<Player>
+public class Game
 {
-    public List<Player> playerList = new ArrayList();
-    public boolean active;
     
-    public Game()
+    public List<Player> playerList = new ArrayList();
+    
+    public Game(List<Player> p)
     {
-        
+        this.playerList = p;
+    }       
+    
+    public void clearPlayerList()
+    {
+        this.playerList.clear();
+    }
+    
+    public void addPlayer(Player player)
+    {
+        this.playerList.add(player);
+    }
+    
+    //Voir avec la prof si cela fonctionne ou si il faut prevoir un cas si cela ne fonctionne pas et voir si utiliser un boolean est interessant, demander si il est interessant de redefinir equals
+    public boolean removePlayer(Player player)
+    {
+        for(int i = 0; i < this.playerList.size()-1; i++)
+        {
+            if(playerList.get(i).equals(player))
+            {
+                this.playerList.remove(player);
+                return true;
+            }    
+                
+        }          
+        return false;
+    }        
+    /*
+    
+    //Voir avec la prof si on peut mettre un id negatif au bot afin de pouvoir fiare un remove par id
+    public boolean removePlayerById(int identifiant)
+    {
+        for(int i = 0; i < this.playerList.size()-1; i++)
+        {
+            if(playerList.get(i).)
+            {
+                this.playerList.remove(player);
+                return true;
+            }    
+                
+        }          
+        return false;
+    }        
+    */
+    
+    public boolean removePlayerByName(String n)
+    {
+        for(int i = 0; i < this.playerList.size()-1; i++)
+        {
+            if(playerList.get(i).getName().equals(n))
+            {
+                this.playerList.remove(i);
+                return true;
+            }    
+                
+        }          
+        return false;
     }        
     
-    
-    public String ToStringAllHumanPlayers()
+    //Voir avec la prof, string ou void STRING
+    public String printAllPlayers()
     {
-        String str ="";
+        String str = null;
         
-        for(Player player : humanPlayerList)
+        for(Player player : playerList)
         {
-            str += "Joueur n°" + player.id + " - Nom : " + player.name + "\n \t Nombre de partie gagné : " + player.getGameWin() + "\n \t Nombre de partie perdu : " + (player.getNbGame() - player.getGameWin()) + "\n \t Nombre de partie total : " + player.getNbGame() + '\n';
+                str += player.toString();
         }
         
         return str;
     }
-    
-    public String printAllPlayers()
-    {
-        for(Player player : playerList)
-        {
-            if(player.isHuman == true)
-                System.out.println("- Joueur n°" + player.id + " - " + player.name);
-            else
-                System.out.println("- BOT - " + player.name);
-        }
-    }
-    
-    /**
-     * Permet d'afficher les informations du joueur sur lequel est appelé la methode
-     */
-    public void printPlayer()
-    {
-        System.out.println("- Joueur n°" + this.id + " - Nom : " + this.name + "\n \t Nombre de partie gagné : " + this.getGameWin() + "\n \t Nombre de partie perdu : " + (this.getNbGame() - this.getGameWin()) + "\n \t Nombre de partie total : " + this.getNbGame() + '\n');
-    } 
-    
-    
     
     /**
      * Fonction permettant de changer de tour
      * Attention ! Cette méthode n'est valable que pour les jeux en tour par tour
      * @param p
      */
-    public void changeTurn(List<Player> p)
+    public void changeTurn(List<Player> p, int idlist)
     {
-        
-        for (int i = 0; i < p.size(); i++) 
-        {
-            if(p.get(i).isActive() == true)
-            {
-                p.get(i).setActive(false);
                 
-                
-                if(i != p.size()-1)
+                if(idlist != p.size()-1)
                 {
-                    p.get(i+1).setActive(true);
-                    System.out.println("C'est à " + p.get(i+1).getName() + " de jouer");
-                    break;
+                    idlist = 
                 }    
                 
                 else if(i == p.size()-1)
@@ -88,9 +114,7 @@ public class Game implements Comparable<Player>
                     System.out.println("C'est à " + p.get(0).getName() + " de jouer");
                     break;
                 }               
-            }    
-                
-	}
+
     }  
     
     /**
@@ -120,11 +144,11 @@ public class Game implements Comparable<Player>
                         String n = sc.nextLine();
                         System.out.println("Saisissez l'age du joueur que vous souhaitez ajouter");
                         int a = sc.nextInt();
-                        p.add(CreatePlayer(n,a));
+                        p.add(new Human(n,a,this));
                         break;
                         
                     case "bot":
-                        p.add(CreateCPU());
+                        p.add(new Cpu(this));
                         break;
                         
                     default:
@@ -151,7 +175,7 @@ public class Game implements Comparable<Player>
     }
     
     
-    public static void addPlayers(Player p)
+    public void addPlayers(Player p)
     {        
         playerList.add(p);
     }       
@@ -160,46 +184,14 @@ public class Game implements Comparable<Player>
      * Permet de définir le premier joueur à jouer
      * @param p
      */
-    public static void setFirst(List<Player> p)
+    public void setFirst(List<Player> p)
     {
         p.get(0).setActive(true);
         System.out.println("C'est à " + p.get(0).getName() + " de jouer");
     }     
 
-    public static void chooseOrderByAge()
-    {
-        Collections.sort(playerList, Player.Comparators.AGE);
-    }
-    
-    public static void chooseOrderByName()
-    {
-        Collections.sort(playerList, Player.Comparators.NAME);
-    }
-    
-    public static void chooseOrderByRandom()
-    {
-        Collections.shuffle(playerList);
-    }
-    
-    
 
-    @Override
-    public int compareTo(Player t) {
-        return 0;
-    }
-    
-    
-    
-    /**
-     * Classe permettant de trier une arraylist selon l'age ou le nom dans notre cas
-     */
-    public static class Comparators {
 
-        public static Comparator<Player> NAME = (Player p1, Player p2) -> p1.name.compareTo(p2.name);
-        
-        public static Comparator<Player> AGE = (Player p1, Player p2) -> p1.age - p2.age;
-    }
-    
     
     
     
