@@ -16,6 +16,7 @@ public class RulesByAge extends Rules {
     public RulesByAge(PlayerList p)
     {
         super(p);
+        System.out.println("TImmy");
         
     }
     
