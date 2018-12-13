@@ -7,6 +7,7 @@ package game.model.common;
 
 import game.model.common.player.Player;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -93,5 +94,10 @@ public class PlayerList
         else
             this.idlist++;
     }  
+          
+    public void shuffle()
+    {
+        Collections.shuffle(playerList);
+    }        
     
 }

@@ -13,8 +13,12 @@ import game.model.common.PlayerList;
  */
 public class RulesByRandom extends Rules {
            
-    public RulesByRandom(PlayerList p) {
+    public RulesByRandom(PlayerList p) 
+    {
         super(p);
+        p.shuffle();
     }
-           
+    
+    
+    
 }
