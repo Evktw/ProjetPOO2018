@@ -7,19 +7,22 @@ package game.model.common.rules;
 
 import game.model.common.PlayerList;
 
-/**
- *
- * @author evktw
- */
 
-//Pour les mot clés, faire une interface implémenté par tous les jeux (voir avec la prof)
+// Pour les mot clés, faire une interface implémentée par tous les jeux (voir avec la prof)
 
-public abstract class Rules
-{
-    PlayerList playerList;
-    
-    Rules(PlayerList p)
-    {
+public abstract class Rules {
+
+    /**
+     * Attributs
+     */
+    public PlayerList playerList;                // Liste des Joueurs
+
+
+    /**
+     * Constructeur
+     * @param p
+     */
+    Rules(PlayerList p) {
         this.playerList = p;
     }        
 }

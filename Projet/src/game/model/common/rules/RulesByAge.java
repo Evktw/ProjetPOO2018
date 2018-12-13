@@ -6,19 +6,58 @@
 package game.model.common.rules;
 
 import game.model.common.PlayerList;
+import game.model.common.player.Player;
 
-/**
- *
- * @author evktw
- */
+import java.util.List;
+
 public class RulesByAge extends Rules {
-    
-    public RulesByAge(PlayerList p)
-    {
+
+    /**
+     * Attributs
+     */
+    protected boolean younger;  // Le plus jeune si vrai, vieux si faux
+
+
+
+
+    public RulesByAge(PlayerList p, boolean y) {
         super(p);
-        System.out.println("TImmy");
-        
+        this.younger= y;
+        //CHERCHER LES HUMAINS
+        if(younger == true) {
+            this.getHumansByAgeMin(p);
+        }
+        else {
+            this.getHumansByAgeMax(p);
+        }
     }
-    
-    
+
+
+    /**
+     * Méthode permettant de récupérer un joueur en fonction de l'age de chaque joueur d'une liste de joueurs.
+     */
+    private Player getHumansByAgeMin(PlayerList p){
+        int start = 0;
+        int indMin = start;
+        List<Player> tab = p.getPlayerList();
+        for( int i = start +1; i < tab.size() ;i++){
+            if(this.tab[i]<this.tab[indMin]){
+                indMin=i;
+            }
+        }
+        return p[indMin];
+    }
+
+
+    private Player getHumansByAgeMax(PlayerList p){
+        int start = 0;
+        int indMax = start;
+        List<Player> tab = p.getPlayerList();
+        for( int i = start +1; i < tab.size() ;i++){
+            if(tab[i]>tab[indMax]){
+                indMax=i;
+            }
+        }
+        return p[indMax];
+    }
 }
