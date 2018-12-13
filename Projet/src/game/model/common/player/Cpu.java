@@ -14,12 +14,19 @@ import java.util.Random;
  */
 public class Cpu extends Player {
     
-    private final static String cpuNames [] = {"Jean","Eric","Sophie", "Bruno", "Melanie"};
+    private final static String CPUNAMES [] = {"Jean","Eric","Sophie", "Bruno", "Melanie"};
     
-    public Cpu(String name, Game g)
+    public Cpu(Game g)
     {
         super(ChooseCpuName(),g);
     }     
+    
+    @Override
+    public String toString()
+    {
+        String str = " \n Nom : " + this.getName() + " | " + "Win : " + this.getGameWin() + " | " + "Played : " + this.getGame() + '\n';
+        return str;
+    }
     
     
     public static String ChooseCpuName()
@@ -29,7 +36,7 @@ public class Cpu extends Player {
         Random rnd = new Random();
         int val = rnd.nextInt(5);
         
-        str += cpuNames[val];
+        str += CPUNAMES[val];
         
         return str;
     }
