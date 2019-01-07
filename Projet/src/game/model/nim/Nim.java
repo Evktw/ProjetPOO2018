@@ -10,9 +10,7 @@ package game.model.nim;
 import static game.ihm.text.PlayerListFactory.CreateListOfPlayers;
 import game.model.common.Game;
 import game.model.common.PlayerList;
-import game.model.common.player.CpuNim;
-import game.model.common.player.Human;
-import game.model.common.player.HumanNim;
+import game.model.common.player.PlayerNim;
 import game.model.common.rules.Rules;
 import game.model.common.rules.RulesByAge;
 import game.model.common.rules.RulesByName;
@@ -35,7 +33,7 @@ public class Nim extends Game
         NimGame();
     }
     
-    public Nim(int min, int max, Rules r) throws Exception
+    public Nim(int min, int max) throws Exception
     {
         this(null,min,max);
         this.setPlayerList(CreateListOfPlayers(this));
@@ -99,14 +97,11 @@ public class Nim extends Game
             int i = this.playerList.getIdlist();
             
             System.out.println("Il y a actuellement " + this.nbMatchstickTotal + " Allumettes \n \n \t Combien souhaitez vous en enlever ?");
-            this.playerList.getPlayer(i).play(this.nbMatchstickTotal, this.nbPerTurn);
-            /*
-            //A modifier mais certainement fonctionnel, voir si il ne faut pas faire des verifications avant
-            if(this.playerList.getPlayer(i) instanceof HumanNim)
-                ((HumanNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn);
-            else
-                ((CpuNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn);
-            */
+            if(this.playerList.getPlayer(i) instanceof PlayerNim)
+            {    
+               ((PlayerNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn);
+            }    
+            
             this.playerList.changeTurn();
         }    
         while(this.isPlaying == true && this.nbMatchstickTotal > 0);

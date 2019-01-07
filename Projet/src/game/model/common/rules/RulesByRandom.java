@@ -19,10 +19,6 @@ public class RulesByRandom extends Rules {
         this.playerList.shuffle();
     }
     
-    public void shufflelist()
-    {
-        
-    }
     
     
     

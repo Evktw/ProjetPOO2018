@@ -6,22 +6,27 @@
 package game.model.common.player;
 
 import game.model.common.Game;
-import java.util.Scanner;
+import java.util.Random;
 
 /**
  *
  * @author evktw
  */
-public class CpuNim extends Cpu {
+public class CpuNim extends Cpu implements PlayerNim{
+    
+    private static final Random RND = new Random();
     
     public CpuNim(Game g)
     {
         super(g);
     }
-    
-    public void play(int nbmax, int nbperturn)
+
+    @Override
+    public int play(int nbperturn, int nbtotal)
     {
+        int val = RND.nextInt(nbperturn)+1;
         
+        return nbtotal - val;
     }
     
     
