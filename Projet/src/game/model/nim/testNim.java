@@ -14,7 +14,7 @@ import java.util.List;
  * @author evktw
  */
 public class testNim {
-    
+    /*
     public static void main(String[] args)
     {
         List<Player> p = new ArrayList<Player>();
@@ -30,6 +30,6 @@ public class testNim {
         
         
     }
-    
+    */
     
 }

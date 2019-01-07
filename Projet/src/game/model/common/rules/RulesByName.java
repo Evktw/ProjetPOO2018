@@ -16,7 +16,7 @@ public class RulesByName extends Rules{
     public RulesByName(PlayerList p)
     {
         super(p);
-        
+        //faire le tri
         
     }
     

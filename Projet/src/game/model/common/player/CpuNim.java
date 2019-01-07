@@ -3,27 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.model.common.rules;
+package game.model.common.player;
 
-import game.model.common.PlayerList;
+import game.model.common.Game;
+import java.util.Scanner;
 
 /**
  *
  * @author evktw
  */
-public class RulesByRandom extends Rules {
-           
-    public RulesByRandom(PlayerList p) 
+public class CpuNim extends Cpu {
+    
+    public CpuNim(Game g)
     {
-        super(p);
-        this.playerList.shuffle();
+        super(g);
     }
     
-    public void shufflelist()
+    public void play(int nbmax, int nbperturn)
     {
         
     }
-    
     
     
 }

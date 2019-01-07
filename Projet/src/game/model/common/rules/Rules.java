@@ -16,7 +16,7 @@ import game.model.common.PlayerList;
 
 public abstract class Rules
 {
-    PlayerList playerList;
+    public PlayerList playerList;
     
     Rules(PlayerList p)
     {

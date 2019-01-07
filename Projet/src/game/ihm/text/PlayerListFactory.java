@@ -6,11 +6,10 @@
 package game.ihm.text;
 
 import game.model.common.Game;
+import game.model.common.PlayerList;
 import game.model.common.player.Cpu;
 import game.model.common.player.Human;
 import game.model.common.player.Player;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -19,9 +18,9 @@ import java.util.Scanner;
  */
 public class PlayerListFactory {
     
-    public static  List<Player> CreateListOfPlayers(Game g)
+    public static PlayerList CreateListOfPlayers(Game g)
     {
-        List<Player> p = new ArrayList<Player>();
+        PlayerList p = new PlayerList(g);
         Scanner sc = new Scanner(System.in);
         String c;
         
@@ -43,11 +42,11 @@ public class PlayerListFactory {
                         String n = sc.nextLine();
                         System.out.println("Saisissez l'age du joueur que vous souhaitez ajouter");
                         int a = sc.nextInt();
-                        p.add(new Human(n,a,g));
+                        p.addPlayer(new Human(n,a,g));
                         break;
                         
                     case "bot":
-                        p.add(new Cpu(g));
+                        p.addPlayer(new Cpu(g));
                         break;
                         
                     default:
@@ -59,7 +58,7 @@ public class PlayerListFactory {
             while(!choix.equals("bot") && !choix.equals("joueur"));
             
             System.out.println("Voici la liste des joueurs actuelle : \n");
-            System.out.println(printAllPlayers(p));
+            System.out.println(p.printAllPlayers());
             System.out.println("\n");
                
             //--------------------------------------------------------------------------
@@ -73,11 +72,11 @@ public class PlayerListFactory {
         return p;
     }
     
-    public static String printAllPlayers(List<Player> p){
+    public static String printAllPlayers(PlayerList p){
         
         String str = null;
         
-        for(Player player : p)
+        for(Player player : p.getPlayerList())
         {
                 str += player.toString();
         }

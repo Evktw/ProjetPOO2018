@@ -25,7 +25,7 @@ public abstract class Player {
         this.game = game;
     }
     
-    protected void play()
+    public void play()
     {
         
     }        

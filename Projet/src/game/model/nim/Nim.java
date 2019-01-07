@@ -7,23 +7,140 @@ package game.model.nim;
 
 
 
-import game.model.common.player.Player;
-import java.util.List;
-import java.util.Random;
+import static game.ihm.text.PlayerListFactory.CreateListOfPlayers;
+import game.model.common.Game;
+import game.model.common.PlayerList;
+import game.model.common.player.CpuNim;
+import game.model.common.player.Human;
+import game.model.common.player.HumanNim;
+import game.model.common.rules.Rules;
+import game.model.common.rules.RulesByAge;
+import game.model.common.rules.RulesByName;
+import game.model.common.rules.RulesByRandom;
 import java.util.Scanner;
 
 /**
  *
  * @author evktw
  */
-public class Nim
+public class Nim extends Game
 {
-    private boolean isPlaying;
-    private int nbMatchstickTotal;
-    private int K;
+    public boolean isPlaying;
+    public int nbMatchstickTotal;
+    public int nbPerTurn;
+    
+    public Nim(PlayerList p, int min, int max) throws Exception
+    {
+        super(p,min,max);
+        NimGame();
+    }
+    
+    public Nim(int min, int max, Rules r) throws Exception
+    {
+        this(null,min,max);
+        this.setPlayerList(CreateListOfPlayers(this));
+        NimGame();
+    }  
+  
+    //Voir pour eventuellement divisé le NimGame en méthode plus petite
+    
+    public void NimGame() throws Exception
+    {
+        if(this.playerList.getSize() > this.getNbMaxJoueurs())
+            throw new Exception("Il y a trop de joueurs");          //Voir ce que l'on fait dans ce cas la
+        else if(this.playerList.getSize() < this.getNbMinJoueurs())
+            throw new Exception("Il n'y a pas assez de joueurs");   //Voir ce que l'on fait dans ce cas la
+        
+        Scanner sc = new Scanner(System.in);
+        this.isPlaying = true;
+        
+        int resultat;
+        
+        do
+        {    
+            System.out.println("Comment decidez vous que le joueur commence ? Choisissez une des réponses suivante : \n- 1 : age\n- 2 : nom\n- 3 : hasard\n \nVotre reponse :");
+                resultat = sc.nextInt();
+                
+            if(resultat != 1 && resultat != 2 && resultat != 3)
+                System.out.println("\nErreur, veuillez rentrer une valeur entre 1 et 3\n");
+        }
+        while(resultat != 1 && resultat != 2 && resultat != 3);
+            
+        Rules r;
+        
+        switch (resultat) 
+        {
+            case 1:
+                System.out.println("=== Vous avez choisis de trier par age ===\n");
+                r = new RulesByAge(this.playerList);
+                break;
+            case 2:
+                System.out.println("=== Vous avez choisis de trier aleatoirement ===\n");
+                r = new RulesByRandom(this.playerList);
+                break;
+            case 3:
+                System.out.println("=== Vous avez choisis de trier par nom ===\n");
+                r = new RulesByName(this.playerList);
+                break;
+        }
+        
+        do 
+        {    
+            System.out.println("Combien d'allumettes au total choisissez vous ?");
+            this.nbMatchstickTotal = sc.nextInt();
+            
+            System.out.println("Combien d'allumettes au maximum par tour voulez vous enlever ?");
+            this.nbPerTurn = sc.nextInt();
+        }
+        while(this.nbMatchstickTotal < nbPerTurn);
+        
+        do
+        {   
+            int i = this.playerList.getIdlist();
+            
+            System.out.println("Il y a actuellement " + this.nbMatchstickTotal + " Allumettes \n \n \t Combien souhaitez vous en enlever ?");
+            this.playerList.getPlayer(i).play(this.nbMatchstickTotal, this.nbPerTurn);
+            /*
+            //A modifier mais certainement fonctionnel, voir si il ne faut pas faire des verifications avant
+            if(this.playerList.getPlayer(i) instanceof HumanNim)
+                ((HumanNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn);
+            else
+                ((CpuNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn);
+            */
+            this.playerList.changeTurn();
+        }    
+        while(this.isPlaying == true && this.nbMatchstickTotal > 0);
+    }        
+
+    public boolean isIsPlaying() {
+        return isPlaying;
+    }
+
+    public void setIsPlaying(boolean isPlaying) {
+        this.isPlaying = isPlaying;
+    }
+
+    public int getNbMatchstickTotal() {
+        return nbMatchstickTotal;
+    }
+
+    public void setNbMatchstickTotal(int nbMatchstickTotal) {
+        this.nbMatchstickTotal = nbMatchstickTotal;
+    }
+
+    public int getNbPerTurn() {
+        return nbPerTurn;
+    }
+
+    public void setNbPerTurn(int nbPerTurn) {
+        this.nbPerTurn = nbPerTurn;
+    }
     
     
-    public Nim(List<Player> playerList)
+    
+    
+/*
+    public Nim()
     {
         Scanner sc = new Scanner(System.in);
         
@@ -122,6 +239,7 @@ public class Nim
     }        
     
     
-    
+*/    
+
     
 }
