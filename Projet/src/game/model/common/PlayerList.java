@@ -9,10 +9,12 @@ import game.model.common.player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 /**
  *
  * @author Opti-Pognon
  */
+
 public class PlayerList 
 {
     public Game game;
@@ -132,8 +134,8 @@ public class PlayerList
     public int getSize()
     {
         return this.playerList.size();
-    }        
-    
+    }    
+
     public boolean swap(int id1, int id2)
     {
         if(id1 > this.playerList.size() - 1|| id1 < 0 || id2 > this.playerList.size() - 1 || id2 < 0)
