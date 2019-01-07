@@ -6,7 +6,6 @@
 package game.model.common.rules;
 
 import game.model.common.PlayerList;
-import game.model.common.player.Player;
 
 public class RulesByName extends Rules{
 
@@ -18,7 +17,6 @@ public class RulesByName extends Rules{
                 this.playerList.swap(0, i);
         }
     }
-
 
     public String getLowerNameInList() {
         String theLower = (this.playerList.getPlayer(0).getName()) ;
