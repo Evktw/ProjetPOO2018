@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public class HumanNim extends Human implements PlayerNim {
     

@@ -9,7 +9,7 @@ import game.model.common.PlayerList;
 
 /**
  *
- * @author evktw
+ * @author Opti Pognon
  */
 
 //Pour les mot clés, faire une interface implémenté par tous les jeux (voir avec la prof)

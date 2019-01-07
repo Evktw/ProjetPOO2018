@@ -5,8 +5,6 @@
  */
 package game.model.nim;
 
-
-
 import static game.ihm.text.PlayerListFactory.CreateListOfPlayers;
 import game.model.common.Game;
 import game.model.common.PlayerList;
@@ -23,8 +21,9 @@ import java.util.Scanner;
 
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
+
 public class Nim extends Game
 {
     public boolean isPlaying;

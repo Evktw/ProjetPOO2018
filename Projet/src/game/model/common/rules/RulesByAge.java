@@ -8,6 +8,10 @@ package game.model.common.rules;
 import game.model.common.PlayerList;
 import game.model.common.player.Human;
 
+/**
+ *
+ * @author Opti-Pognon
+ */
 public class RulesByAge extends Rules {
 
 

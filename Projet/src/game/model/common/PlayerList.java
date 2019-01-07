@@ -12,8 +12,9 @@ import java.util.List;
 
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
+
 public class PlayerList 
 {
     public Game game;

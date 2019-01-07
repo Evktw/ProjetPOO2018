@@ -7,6 +7,10 @@ package game.model.common.rules;
 
 import game.model.common.PlayerList;
 
+/**
+ *
+ * @author Opti-Pognon
+ */
 public class RulesByName extends Rules{
 
     public RulesByName(PlayerList p) {

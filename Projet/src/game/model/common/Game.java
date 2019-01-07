@@ -5,11 +5,9 @@
  */
 package game.model.common;
 
-
-
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public abstract class Game
 {

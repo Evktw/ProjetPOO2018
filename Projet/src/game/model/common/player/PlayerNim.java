@@ -7,7 +7,7 @@ package game.model.common.player;
 
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public interface PlayerNim 
 {
