@@ -40,7 +40,7 @@ public class Nim extends Game
     public Nim(int min, int max) throws Exception
     {
         this(null,min,max);
-        this.setPlayerList(CreateListOfPlayers(this));
+        this.setPlayerList(PlayerListFactory());
         NimGame();
     }  
   
@@ -149,7 +149,7 @@ public class Nim extends Game
         this.playerList.addPlayer(c);
     }
     
-    public PlayerList PlayerListFactorye()
+    public PlayerList PlayerListFactory()
     {
         PlayerList p = new PlayerList(this);
         Scanner sc = new Scanner(System.in);
