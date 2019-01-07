@@ -5,7 +5,6 @@
  */
 package game.model.common;
 
-import game.model.common.rules.Rules;
 
 
 /**
@@ -16,7 +15,6 @@ public abstract class Game
 {
     public PlayerList playerList;
     public int nbjoueurs[] = new int[2];
-    public Rules rules;
     
     public Game(PlayerList p, int min, int max)
     {
@@ -50,5 +48,7 @@ public abstract class Game
         this.playerList = playerList;
     }
     
+    public abstract void addPlayerInGame(String name, int age);        
     
+    public abstract void addCpuInGame();
 }

@@ -10,6 +10,10 @@ package game.model.nim;
 import static game.ihm.text.PlayerListFactory.CreateListOfPlayers;
 import game.model.common.Game;
 import game.model.common.PlayerList;
+import game.model.common.player.Cpu;
+import game.model.common.player.CpuNim;
+import game.model.common.player.Human;
+import game.model.common.player.HumanNim;
 import game.model.common.player.PlayerNim;
 import game.model.common.rules.Rules;
 import game.model.common.rules.RulesByAge;
@@ -99,8 +103,9 @@ public class Nim extends Game
             System.out.println("Il y a actuellement " + this.nbMatchstickTotal + " Allumettes \n \n \t Combien souhaitez vous en enlever ?");
             if(this.playerList.getPlayer(i) instanceof PlayerNim)
             {    
-               ((PlayerNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn);
+               this.nbMatchstickTotal = ((PlayerNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn);
             }    
+            
             
             this.playerList.changeTurn();
         }    
@@ -131,8 +136,70 @@ public class Nim extends Game
         this.nbPerTurn = nbPerTurn;
     }
     
+    @Override
+    public void addPlayerInGame(String name, int age) 
+    {
+        HumanNim p = new HumanNim(name,age,this);
+        this.playerList.addPlayer(p);
+    }
+
+    @Override
+    public void addCpuInGame() {
+        CpuNim c = new CpuNim(this);
+        this.playerList.addPlayer(c);
+    }
     
-    
+    public PlayerList PlayerListFactorye()
+    {
+        PlayerList p = new PlayerList(this);
+        Scanner sc = new Scanner(System.in);
+        String c;
+        
+        System.out.println("================= CREATION DES JOUEURS =================");
+        
+        do
+        {    
+            String choix;
+            do
+            {   
+                System.out.println("Souhaitez vous ajouter un joueur ou un BOT (joueur ou bot)");
+                choix = sc.nextLine();
+
+                switch (choix) 
+                {
+                    
+                    case "joueur":
+                        System.out.println("Saisissez le nom du joueur que vous souhaitez ajouter");
+                        String n = sc.nextLine();
+                        System.out.println("Saisissez l'age du joueur que vous souhaitez ajouter");
+                        int a = sc.nextInt();
+                        this.addPlayerInGame(n,a);
+                        break;
+                        
+                    case "bot":
+                        this.addCpuInGame();
+                        break;
+                        
+                    default:
+                        System.out.println("Erreur de saisie, ecrivez joueur ou bot");
+                        break;
+                }
+                
+            }
+            while(!choix.equals("bot") && !choix.equals("joueur"));
+            
+            System.out.println("Voici la liste des joueurs actuelle : \n" + p.toStringAllPlayers() + "\n");
+               
+            //--------------------------------------------------------------------------
+            System.out.println("Souhaitez vous continuer à ajouter des joueurs (oui ou non)");
+            //Voir pourquoi ça bug
+            c = sc.nextLine();
+            //--------------------------------------------------------------------------
+        }
+        while(c.equals("oui"));
+        
+        return p;
+    }        
     
 /*
     public Nim()
@@ -235,6 +302,7 @@ public class Nim extends Game
     
     
 */    
+
 
     
 }
