@@ -6,11 +6,9 @@
 package game.model.common;
 
 import game.model.common.rules.Rules;
-
-
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public abstract class Game
 {

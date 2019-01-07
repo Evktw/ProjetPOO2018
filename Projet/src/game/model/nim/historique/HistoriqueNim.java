@@ -1,5 +1,10 @@
 package game.model.nim.historique;
 
+/**
+ *
+ * @author Opti-Pognon
+ */
+
 public class HistoriqueNim {
 
     /**

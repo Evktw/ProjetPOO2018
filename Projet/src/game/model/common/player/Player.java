@@ -1,7 +1,10 @@
 package game.model.common.player;
 
 import game.model.common.Game;
-
+/**
+ *
+ * @author Opti-Pognon
+ */
 
 
 

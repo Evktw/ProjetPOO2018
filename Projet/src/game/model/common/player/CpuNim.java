@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public class CpuNim extends Cpu implements PlayerNim{
     

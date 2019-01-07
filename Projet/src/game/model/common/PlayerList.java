@@ -9,10 +9,9 @@ import game.model.common.player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public class PlayerList 
 {

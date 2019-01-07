@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public abstract class Cpu extends Player {
     

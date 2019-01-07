@@ -8,11 +8,11 @@ import game.model.common.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
+
 public class testNim {
     /*
     public static void main(String[] args)

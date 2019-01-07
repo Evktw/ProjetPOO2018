@@ -9,7 +9,7 @@ import game.model.common.Game;
 
 /**
  *
- * @author evktw
+ * @author Opti Pognon
  */
 public abstract class Human extends Player {
     
