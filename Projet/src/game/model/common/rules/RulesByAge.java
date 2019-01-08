@@ -12,7 +12,8 @@ import game.model.common.player.Human;
  *
  * @author Opti-Pognon
  */
-public class RulesByAge extends Rules {
+public class RulesByAge extends Rules 
+{
 
     /**
      * Attributs
@@ -47,7 +48,8 @@ public class RulesByAge extends Rules {
     public int getLowerAgeInList()
     {
         int age=0;
-        for (int l=1; l< this.playerList.getSize(); l++) {
+        for (int l=1; l< this.playerList.getSize(); l++) 
+        {
             for (int i = 0; i < this.playerList.getSize() - 1; i++) {
                 if (this.playerList.getPlayer(i) instanceof Human) {
                     int humanAge = ((Human) this.playerList.getPlayer(i)).getAge();
@@ -56,8 +58,9 @@ public class RulesByAge extends Rules {
                         age = humanAge;
                 }
             }
+        }
             return age;
-    }        
+        }        
     
     
 }    

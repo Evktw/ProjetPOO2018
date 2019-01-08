@@ -37,14 +37,12 @@ public class Nim extends Game {
     public Nim(PlayerList p, int min, int max) throws Exception
     {
         super(p,min,max);
-        NimGame();
     }
     
     public Nim(int min, int max) throws Exception
     {
         this(null,min,max);
         this.setPlayerList(PlayerListFactory());
-        NimGame();
     }  
   
     //Voir pour eventuellement divisé le NimGame en méthode plus petite
@@ -99,12 +97,17 @@ public class Nim extends Game {
             
             System.out.println("Combien d'allumettes au maximum par tour voulez vous enlever ?");
             this.nbPerTurn = sc.nextInt();
+            
+            if(this.nbPerTurn > this.nbMatchstickTotal)
+                System.out.println("/nErreur, veuillez entrer un nombre par tour superieur au nombre total/n");
         }
         while(this.nbMatchstickTotal < nbPerTurn);
         
         do
         {   
             int i = this.playerList.getIdlist();
+            
+            System.out.println("\nC'est à " + this.playerList.getPlayer(i).getName() + " de jouer\n");
             
             System.out.println("Il y a actuellement " + this.nbMatchstickTotal + " Allumettes \n \n \t Combien souhaitez vous en enlever ?");
             if(this.playerList.getPlayer(i) instanceof PlayerNim)
@@ -115,6 +118,11 @@ public class Nim extends Game {
                this.nbMatchstickTotal = (this.nbMatchstickTotal - nbMatchRemoved);
             }    
             
+            if(this.nbMatchstickTotal <= 0)
+            {
+                this.nbMatchstickTotal = 0;
+                System.out.println(this.playerList.getPlayer(i).getName() + " à perdu");
+            }    
             
             this.playerList.changeTurn();
         }    
@@ -211,4 +219,5 @@ public class Nim extends Game {
     }        
     
 
-    }
+}
+

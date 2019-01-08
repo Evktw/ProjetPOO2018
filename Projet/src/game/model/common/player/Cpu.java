@@ -24,7 +24,7 @@ public abstract class Cpu extends Player {
     @Override
     public String toString()
     {
-        String str = " \n Nom : " + this.getName() + " | " + "Win : " + this.getGameWin() + " | " + "Played : " + this.getGame() + '\n';
+        String str = " \n Nom : " + this.getName() + " | " + "Win : " + this.getGameWin() + " | " + "Played : " + this.getNbGame() + '\n';
         return str;
     }
     

@@ -73,7 +73,7 @@ public class PlayerList
     
     public String toStringAllPlayers()
     {
-        String str = null;
+        String str = "";
         
         for(Player player : playerList)
         {
