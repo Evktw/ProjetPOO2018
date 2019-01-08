@@ -13,6 +13,10 @@ import game.model.common.PlayerList;
  */
 public class RulesByName extends Rules{
 
+    /**
+     * Constructeur(s) de RulesByName
+     * @param p
+     */
     public RulesByName(PlayerList p) {
         super(p);
         String theLower = getLowerNameInList();
@@ -22,6 +26,18 @@ public class RulesByName extends Rules{
         }
     }
 
+    /**
+     * Méthode permettant de trier alphabétiquement une liste de
+     * joueurs par rapport à leurs noms
+     * @return playerList
+     */
+
+
+    /**
+     * Méthode permettant d'obtenir le nom le plus haut placé dans
+     * une liste de nom par rapport à un tri alphabétique
+     * @return theLower
+     */
     public String getLowerNameInList() {
         String theLower = (this.playerList.getPlayer(0).getName()) ;
         for (int i = 0; i < this.playerList.getSize() - 1; i++) {
