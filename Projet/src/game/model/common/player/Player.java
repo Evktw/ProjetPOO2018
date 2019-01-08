@@ -1,7 +1,10 @@
 package game.model.common.player;
 
 import game.model.common.Game;
-
+/**
+ *
+ * @author Opti-Pognon
+ */
 
 
 
@@ -25,7 +28,7 @@ public abstract class Player {
         this.game = game;
     }
     
-    protected void play()
+    public void play()
     {
         
     }        

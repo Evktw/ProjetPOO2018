@@ -9,13 +9,13 @@ import game.model.common.Game;
 
 /**
  *
- * @author evktw
+ * @author Opti Pognon
  */
-public class Human extends Player {
+public abstract class Human extends Player {
     
-    private int age;
-    private int id;
-    private static int idPlayer =1;
+    public int age;
+    public int id;
+    public static int idPlayer =1;
     
     
     public Human(String name,int age, Game g)
@@ -34,7 +34,7 @@ public class Human extends Player {
     }
 
     @Override
-    protected void play()
+    public void play()
     {
         
     }      

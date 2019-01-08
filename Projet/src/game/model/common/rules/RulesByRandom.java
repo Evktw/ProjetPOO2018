@@ -6,18 +6,18 @@
 package game.model.common.rules;
 
 import game.model.common.PlayerList;
-
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public class RulesByRandom extends Rules {
            
     public RulesByRandom(PlayerList p) 
     {
         super(p);
-        p.shuffle();
+        this.playerList.shuffle();
     }
+    
     
     
     

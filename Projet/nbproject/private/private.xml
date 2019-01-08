@@ -4,15 +4,22 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/testJoueur.java</file>
-            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/Cpu.java</file>
-            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/Player.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/HumanNim.java</file>
             <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/rules/RulesByRandom.java</file>
             <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/Game.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/nim/historique/HistoriqueNim.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/CpuNim.java</file>
             <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/rules/RulesByAge.java</file>
-            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/ihm/text/PlayerListFactory.java</file>
-            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/rules/Rules.java</file>
             <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/rules/RulesByName.java</file>
             <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/PlayerList.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/Cpu.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/Player.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/nim/Nim.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/nim/historique/MoveNim.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/PlayerNim.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/ihm/text/PlayerListFactory.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/nim/testNim.java</file>
+            <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/rules/Rules.java</file>
             <file>file:/home/evktw/Documents/JAVA/ProjetPOO2018/Projet/src/game/model/common/player/Human.java</file>
         </group>
     </open-files>

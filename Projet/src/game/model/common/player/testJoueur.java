@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 package game.model.common.player;
-
-
 /**
  *
- * @author kmessmer
+ * @author Opti-Pognon
  */
 public class testJoueur 
 {

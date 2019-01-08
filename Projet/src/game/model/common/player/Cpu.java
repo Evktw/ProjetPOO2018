@@ -10,9 +10,9 @@ import java.util.Random;
 
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
-public class Cpu extends Player {
+public abstract class Cpu extends Player {
     
     private final static String CPUNAMES [] = {"Jean","Eric","Sophie", "Bruno", "Melanie"};
     
@@ -42,7 +42,7 @@ public class Cpu extends Player {
     }
     
     @Override
-    protected void play()
+    public void play()
     {
         
     }      
