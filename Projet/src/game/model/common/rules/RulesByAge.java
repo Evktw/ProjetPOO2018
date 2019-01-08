@@ -26,8 +26,7 @@ public class RulesByAge extends Rules
     {
         PlayerList sortedList = new PlayerList(this.playerList.getGame());
         int agemin = getLowerAgeInList();
-        int l = 0;
-        while (l< playerList.getSize() -1) {
+        while (playerList.getSize() !=0) {
             for (int i = 0; i < this.playerList.getSize() - 1; i++) {
                 if (this.playerList.getPlayer(i) instanceof Human) {
                     if (agemin == ((Human) this.playerList.getPlayer(i)).getAge())
@@ -36,9 +35,9 @@ public class RulesByAge extends Rules
             }
             sortedList.addPlayer(this.playerList.getPlayer(0));
             this.playerList.removePlayer(this.playerList.getPlayer(0));
-            l++;
         }
-        return sortedList;
+        this.playerList = sortedList;
+        return playerList;
     }        
     
     
