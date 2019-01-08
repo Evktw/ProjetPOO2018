@@ -10,18 +10,18 @@ public class HistoriqueNim {
     /**
      * Attributs
      */
-    public class Moves {
-        public MoveNim move;
+    private class Moves {
+        private MoveNim move;
         private Moves next;
 
-        public Moves(MoveNim move, Moves next) {
+        private Moves(MoveNim move, Moves next) {
             this.move = move;
             this.next = next;
         }
     }
 
-    public int size;                                             // Taille de l'Historique
-    public Moves firstMove;                                      // Sommet de la Pile de l'Historique
+    private int size;                                             // Taille de l'Historique
+    private Moves firstMove;                                      // Sommet de la Pile de l'Historique
     private String winner;                                       // Gagnant de la partie
     private int gameId;                                          // Identifiant de la partie correspondant à l'historique
 
@@ -40,8 +40,7 @@ public class HistoriqueNim {
      */
     public void push (MoveNim move){
         Moves temp = this.firstMove;
-        Moves johnCena = new Moves(move, temp);
-        this.firstMove = johnCena;
+        this.firstMove = new Moves(move, temp);
         this.size++;
     }
 
@@ -49,7 +48,7 @@ public class HistoriqueNim {
      * Méthode permettant de dépiler le premier coup de l'historique
      */
     public int popS(){
-        if(this.isVide() == false){
+        if(!this.isVide()){
             this.firstMove = this.firstMove.next;
             size = size - 1;
         }
@@ -61,10 +60,9 @@ public class HistoriqueNim {
      * @param n
      * @return size
      */
-
     //!\ Si n sommet de la pile le cas ne sera pas traité !  /!\
     public int popN(MoveNim n) {
-        if (this.isVide() == false) {
+        if (!this.isVide()) {
             Moves scroll = this.firstMove;
             while (scroll.next != null) {
                 if (scroll.next.move == n) {
@@ -82,7 +80,7 @@ public class HistoriqueNim {
      * Méthode permettant de vérifier si la pile est nulle
      */
 
-    public boolean isVide(){
+    private boolean isVide(){
         return (this.firstMove == null);
     }
 
@@ -90,7 +88,7 @@ public class HistoriqueNim {
     /**
      * Méthode permettant d'afficher l'historique
      */
-    public void afficheRec(Moves hist){
+    private void afficheRec(Moves hist){
         if(hist == null) {
             System.out.println("Fin de l'Historique");
         }

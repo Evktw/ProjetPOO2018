@@ -12,7 +12,8 @@ import game.model.common.player.Human;
  *
  * @author Opti-Pognon
  */
-public class RulesByAge extends Rules {
+public class RulesByAge extends Rules 
+{
 
 
     public RulesByAge(PlayerList p)
@@ -25,35 +26,37 @@ public class RulesByAge extends Rules {
     public PlayerList getFirstByLowerAge()
     {
         int agemin = getLowerAgeInList();
-        
-        for(int i = 0; i < this.playerList.getSize()-1 ; i++)
-        {
-            if(this.playerList.getPlayer(i) instanceof Human)
-            {
-                if(agemin == ((Human)this.playerList.getPlayer(i)).getAge())
-                    this.playerList.swap(0, i);
+        PlayerList sortedList = this.playerList;
+        for (int l=1; l< playerList.getSize(); l++) {
+            for (int i = 0; i < this.playerList.getSize() - 1; i++) {
+                if (this.playerList.getPlayer(i) instanceof Human) {
+                    if (agemin == ((Human) this.playerList.getPlayer(i)).getAge())
+                        this.playerList.swap(0, i);
+                }
             }
+            sortedList.addPlayer(this.playerList.getPlayer(0));
+            this.playerList.removePlayer(this.playerList.getPlayer(0));
         }
-        return this.playerList;
+        return sortedList;
     }        
     
     
     public int getLowerAgeInList()
     {
         int age=0;
-        
-        for(int i = 0; i < this.playerList.getSize()-1 ; i++)
+        for (int l=1; l< this.playerList.getSize(); l++) 
         {
-            if(this.playerList.getPlayer(i) instanceof Human)
-            {
-                int humanAge = ((Human)this.playerList.getPlayer(i)).getAge();
-                
-                if(humanAge > age)
-                    age = humanAge;
+            for (int i = 0; i < this.playerList.getSize() - 1; i++) {
+                if (this.playerList.getPlayer(i) instanceof Human) {
+                    int humanAge = ((Human) this.playerList.getPlayer(i)).getAge();
+
+                    if (humanAge > age)
+                        age = humanAge;
+                }
             }
-        }  
-        return age;
-    }        
+        }
+            return age;
+        }        
     
     
 }    

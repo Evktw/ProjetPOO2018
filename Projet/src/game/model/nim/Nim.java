@@ -7,15 +7,16 @@ package game.model.nim;
 
 import game.model.common.Game;
 import game.model.common.PlayerList;
-import game.model.common.player.Cpu;
 import game.model.common.player.CpuNim;
-import game.model.common.player.Human;
 import game.model.common.player.HumanNim;
 import game.model.common.player.PlayerNim;
 import game.model.common.rules.Rules;
 import game.model.common.rules.RulesByAge;
 import game.model.common.rules.RulesByName;
 import game.model.common.rules.RulesByRandom;
+import game.model.nim.historique.HistoriqueNim;
+import game.model.nim.historique.MoveNim;
+
 import java.util.Scanner;
 
 /**
@@ -23,11 +24,15 @@ import java.util.Scanner;
  * @author Opti-Pognon
  */
 
-public class Nim extends Game
-{
+public class Nim extends Game {
+
+    /**
+     * Attributs
+     */
     public boolean isPlaying;
     public int nbMatchstickTotal;
     public int nbPerTurn;
+    public int mkID = 0;
     
     public Nim(PlayerList p, int min, int max) throws Exception
     {
@@ -50,6 +55,9 @@ public class Nim extends Game
             throw new Exception("Il n'y a pas assez de joueurs");   //Voir ce que l'on fait dans ce cas la
         
         Scanner sc = new Scanner(System.in);
+        this.mkID = mkID+1;
+        int gameId = this.mkID;
+        HistoriqueNim GameMoves = new HistoriqueNim(gameId);
         this.isPlaying = true;
         
         int resultat;
@@ -103,8 +111,11 @@ public class Nim extends Game
             
             System.out.println("Il y a actuellement " + this.nbMatchstickTotal + " Allumettes \n \n \t Combien souhaitez vous en enlever ?");
             if(this.playerList.getPlayer(i) instanceof PlayerNim)
-            {    
-               this.nbMatchstickTotal = ((PlayerNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn);
+            {
+               int nbMatchRemoved = (((PlayerNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn));
+               MoveNim daMove = new MoveNim(nbMatchRemoved, (this.playerList.getPlayer(i).getName()), (this.nbMatchstickTotal-nbMatchRemoved));
+               GameMoves.push(daMove);
+               this.nbMatchstickTotal = (this.nbMatchstickTotal - nbMatchRemoved);
             }    
             
             if(this.nbMatchstickTotal <= 0)
@@ -207,4 +218,6 @@ public class Nim extends Game
         return p;
     }        
     
+
 }
+
