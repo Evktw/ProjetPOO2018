@@ -33,7 +33,7 @@ public class HumanNim extends Human implements PlayerNim {
         }
         while(valeur > nbperturn || valeur < 1);
         
-        return nbtotal-valeur;
+        return valeur;
     }
 
 
