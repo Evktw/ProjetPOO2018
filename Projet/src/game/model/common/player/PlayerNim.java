@@ -11,5 +11,5 @@ package game.model.common.player;
  */
 public interface PlayerNim 
 {
-    public int play(int nbperturn, int nbtotal);
+    public int play(int nbtotal, int nbperturn);
 }

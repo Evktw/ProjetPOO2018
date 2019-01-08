@@ -22,7 +22,7 @@ public class CpuNim extends Cpu implements PlayerNim{
     }
 
     @Override
-    public int play(int nbperturn, int nbtotal)
+    public int play(int nbtotal, int nbperturn)
     {
         int val = RND.nextInt(nbperturn)+1;
         
