@@ -96,7 +96,7 @@ public class RulesByName extends Rules{
             currentName = (this.playerList.getPlayer(i).getName().toLowerCase());
             if(theLower.compareTo(currentName)<0){
                 theLower = currentName;
-                idLowerName = this.playerList.idlist;
+                idLowerName = this.playerList.getIdlist();
             }
         }
         

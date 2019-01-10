@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package game.ihm.graphic;
 
 import java.awt.Color;
@@ -17,7 +13,7 @@ import javax.swing.KeyStroke;
 
 /**
  *
- * @author evktw
+ * @author Opti-Pognon
  */
 public class Interface {
     
@@ -78,7 +74,7 @@ public class Interface {
         myLayout.setMaximumSize(new Dimension(700,700));
         myLayout.setMinimumSize(new Dimension(700,700));
         myLayout.setVisible(true);
-        myLayout.pack();
+        //myLayout.pack();
         myLayout.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         myLayout.setLocationRelativeTo(null);
         

@@ -1,20 +1,19 @@
 package game.model.common.player;
 
 import game.model.common.Game;
+
 /**
  *
  * @author Opti-Pognon
  */
 
-
-
 public abstract class Player {
-  
-    
-    protected String name;
-    protected int nbGame;
-    protected int gameWin;
-    protected Game game;
+
+    protected String name;          //Pseudo du joueur
+    protected int nbGame;           //Nombre de parties effectuées par le joueur
+    protected int gameWin;          //Nombre de parties gagnées par le joueur
+    protected Game game;            //Nom du jeu auquel le joueur a participé
+
     /**
      * Constructeur de la classe Joueur
      * @param name
@@ -27,43 +26,31 @@ public abstract class Player {
         this.name = name;
         this.game = game;
     }
-    
+
+    /**
+     * Méthode play par défaut
+     */
     public void play()
     {
-        
-    }        
 
-    public String getName() {
-        return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * Getters & Setters
+     */
+    public String getName() { return name; }
 
-    public int getNbGame() {
-        return nbGame;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public void incrementNbGame() {
-        this.nbGame++;
-    }
+    public int getNbGame() { return nbGame; }
 
-    public int getGameWin() {
-        return gameWin;
-    }
+    public void incrementNbGame() { this.nbGame++; }
 
-    public void incrementGameWin() {
-        this.gameWin++;
-    }
+    public int getGameWin() { return gameWin; }
 
-    public Game getGame() {
-        return game;
-    }
+    public void incrementGameWin() { this.gameWin++; }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
-    
-    
+    public Game getGame() { return game; }
+
+    public void setGame(Game game) { this.game = game; }
 }

@@ -9,7 +9,7 @@ import game.model.common.player.Human;
 public class RulesByAge extends Rules {
 
     /**
-     * Constructeur de la méthode RulesByAge
+     * Constructeur de RulesByAge
      * @param p
      */
     public RulesByAge(PlayerList p)

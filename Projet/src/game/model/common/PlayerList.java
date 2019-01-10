@@ -17,11 +17,19 @@ import java.util.List;
 
 public class PlayerList 
 {
+
+    /**
+     * Attributs
+     */
     public Game game;
     
-    public List<Player> playerList;
-    public int idlist;
-    
+    private List<Player> playerList;   // Liste de Joueurs
+    private int idlist;                // Indice d'un joueur dans la liste
+
+
+    /**
+     * Constructeurs
+     */
     public PlayerList(Game g, List<Player> p)
     {
         this.playerList = p;
@@ -32,18 +40,32 @@ public class PlayerList
     public PlayerList(Game g)
     {
         this(g,new ArrayList<Player>());
-    }        
-    
+    }
+
+
+    /**
+     * Reset la liste des joueurs
+     */
     public void clearPlayerList()
     {
         this.playerList.clear();
     }
-    
+
+    /**
+     * Ajoute un joueur de la liste
+     * @param player
+     */
     public void addPlayer(Player player)
     {
         this.playerList.add(player);
     }
-    
+
+    /**
+     * Enleve un joueur de la liste via le joueur
+     * @param player
+     * @return boolean
+     */
+
     public boolean removePlayer(Player player)
     {
         for(int i = 0; i < this.playerList.size()-1; i++)
@@ -55,8 +77,13 @@ public class PlayerList
             }          
         }          
         return false;
-    }        
-    
+    }
+
+    /**
+     * Enleve un joueur de la liste via le pseudo
+     * @param n
+     * @return boolean
+     */
     public boolean removePlayerByName(String n)
     {
         for(int i = 0; i < this.playerList.size()-1; i++)
@@ -70,14 +97,18 @@ public class PlayerList
         }          
         return false;
     }        
-    
+
+    /**
+     * Méthode permettant de générer une chaîne de caractères comprenant tous les pseudos de la liste de joueurs
+     * @return str
+     */
     public String toStringAllPlayers()
     {
         String str = "";
         
         for(Player player : playerList)
         {
-                str += player.toString();
+                str += player.toString() + "; ";
         }
         
         return str;
@@ -86,7 +117,6 @@ public class PlayerList
     /**
      * Fonction permettant de changer de tour
      * Attention ! Cette méthode n'est valable que pour les jeux en tour par tour
-     * @param p
      */
     public void changeTurn()
     {           
@@ -99,8 +129,34 @@ public class PlayerList
     public void shuffle()
     {
         Collections.shuffle(playerList);
-    }        
+    }
 
+    /**
+     * Méthode permettant d'échanger la place de deux joueurs au sein de la liste
+     * @param id1
+     * @param id2
+     * @return boolean
+     */
+    public boolean swap(int id1, int id2) {
+        if(id1 > this.playerList.size() - 1|| id1 < 0 || id2 > this.playerList.size() - 1 || id2 < 0)
+            return false;
+
+        Player p = this.playerList.get(id1);
+        Player p2 = this.playerList.get(id2);
+
+        this.playerList.set(id2, p);
+        this.playerList.set(id1, p2);
+
+        return true;
+    }
+    
+    public boolean isEmpty(){
+        return this.playerList.isEmpty();
+    }
+
+    /**
+     * Getters & Setters
+     */
     public Game getGame() {
         return game;
     }
@@ -126,33 +182,8 @@ public class PlayerList
         this.idlist = idlist;
     }
     
-    public Player getPlayer(int idlist)
-    {
-        return this.playerList.get(idlist);
-    }        
+    public Player getPlayer(int idlist) { return this.playerList.get(idlist); }
     
-    public int getSize()
-    {
-        return this.playerList.size();
-    }    
+    public int getSize() { return this.playerList.size(); }
 
-    public boolean swap(int id1, int id2)
-    {
-        if(id1 > this.playerList.size() - 1|| id1 < 0 || id2 > this.playerList.size() - 1 || id2 < 0)
-            return false;
-        
-        Player p = this.playerList.get(id1);
-        Player p2 = this.playerList.get(id2);
-        
-        this.playerList.set(id2, p);
-        this.playerList.set(id1, p2);
-        
-        return true;
-    }        
-    
-    public boolean isEmpty()
-    {
-        return this.playerList.isEmpty();
-    }        
-    
 }

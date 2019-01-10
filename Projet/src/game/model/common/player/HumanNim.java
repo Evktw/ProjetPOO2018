@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.model.common.player;
 
 import game.model.nim.Nim;
@@ -13,17 +8,29 @@ import java.util.Scanner;
  * @author Opti-Pognon
  */
 public class HumanNim extends Human implements PlayerNim {
-    
+
+
+    /**
+     * Constructeur de HumanNim
+     * @param name
+     * @param age
+     * @param nim
+     */
     public HumanNim(String name, int age, Nim nim) {
         super(name, age, nim);
     }
 
+    /**
+     * Override de la méthode play quand le joueur est Humain
+     * @param nbtotal
+     * @param nbperturn
+     * @return int
+     */
     @Override
     public int play(int nbtotal, int nbperturn) 
     {
         Scanner sc = new Scanner(System.in);
         int valeur;
-        
         do
         {
             valeur = sc.nextInt();
@@ -35,10 +42,4 @@ public class HumanNim extends Human implements PlayerNim {
         
         return valeur;
     }
-
-
-    
-    
-    
-    
 }
