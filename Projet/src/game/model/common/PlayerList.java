@@ -150,4 +150,9 @@ public class PlayerList
         return true;
     }        
     
+    public boolean isEmpty()
+    {
+        return this.playerList.isEmpty();
+    }        
+    
 }

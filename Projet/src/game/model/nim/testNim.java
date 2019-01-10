@@ -48,17 +48,19 @@ public class testNim {
         
         System.out.println("LISTE AVANT TRIE \n" + p.toStringAllPlayers());
         
-        r = new RulesByAge(p);
         
-        System.out.println("\n\n\n\nLISTE APRES TRIE PAR AGE \n" + p.toStringAllPlayers());
-        
-        r = new RulesByName(p);
         
         System.out.println("\n\n\n\nLISTE APRES TRIE PAR NOM \n" + p.toStringAllPlayers());
         
-        r = new RulesByRandom(p);
+        r = new RulesByName(p);
+        
+        System.out.println("\n\n\n\nLISTE APRES TRIE PAR AGE \n" + p.toStringAllPlayers());
+
+        r = new RulesByAge(p);
         
         System.out.println("\n\n\n\nLISTE APRES TRIE PAR ALEATOIRE \n" + p.toStringAllPlayers());
+        
+        r = new RulesByRandom(p);
         
         nim = new Nim(p,1,10);
         
