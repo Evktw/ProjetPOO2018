@@ -1,101 +1,50 @@
 package game.model.nim.historique;
 
+import java.util.Stack;
+
 /**
  *
  * @author Opti-Pognon
  */
 
-public class HistoriqueNim {
+public class HistoriqueNim{
 
     /**
      * Attributs
      */
-    private class Moves {
-        private MoveNim move;
-        private Moves next;
+    private Stack<MoveNim> stack;
 
-        private Moves(MoveNim move, Moves next) {
-            this.move = move;
-            this.next = next;
-        }
-    }
-
-    private int size;                                             // Taille de l'Historique
-    private Moves firstMove;                                      // Sommet de la Pile de l'Historique
-    private String winner;                                       // Gagnant de la partie
-    private int gameId;                                          // Identifiant de la partie correspondant à l'historique
-
+    private String winner;                                      // Gagnant de la partie
+    private int gameId;                                         // Identifiant de la partie correspondant à l'historique
+    private int size;                                           // Taille de l'Historique
 
     /**
      * Constructeur
      */
     public HistoriqueNim(int id){
-        this.firstMove = null;
-        this.size = 0;
         this.gameId = id;
+        this.stack = new Stack<MoveNim>();
+        this.size = this.stack.size();
     }
 
     /**
      * Méthode permettant d'empiler un coup dans l'historique
      */
     public void push (MoveNim move){
-        Moves temp = this.firstMove;
-        this.firstMove = new Moves(move, temp);
+        this.stack.push(move);
         this.size++;
-    }
-
-    /**
-     * Méthode permettant de dépiler le premier coup de l'historique
-     */
-    public int popS(){
-        if(!this.isVide()){
-            this.firstMove = this.firstMove.next;
-            size = size - 1;
-        }
-        return size;
-    }
-
-    /**
-     * Méthode permettant de dépiler un coup n de l'historique
-     * @param n
-     * @return size
-     */
-    //!\ Si n sommet de la pile le cas ne sera pas traité !  /!\
-    public int popN(MoveNim n) {
-        if (!this.isVide()) {
-            Moves scroll = this.firstMove;
-            while (scroll.next != null) {
-                if (scroll.next.move == n) {
-                    scroll.next = scroll.next.next;
-                    size = size - 1;
-                } else {
-                    scroll = scroll.next;
-                }
-            }
-        }
-        return size;
-    }
-
-    /**
-     * Méthode permettant de vérifier si la pile est nulle
-     */
-
-    private boolean isVide(){
-        return (this.firstMove == null);
     }
 
 
     /**
      * Méthode permettant d'afficher l'historique
      */
-    private void afficheRec(Moves hist){
-        if(hist == null) {
-            System.out.println("Fin de l'Historique");
+    private void afficheHistorique(Stack s){
+        while(!s.isEmpty()) {
+            System.out.println(s.pop());
+            afficheHistorique(s);
         }
-        else{
-            System.out.println(hist.move);
-            afficheRec(hist.next);
-        }
+        System.out.println("Fin de l'Historique");
     }
 
     /**
@@ -115,14 +64,6 @@ public class HistoriqueNim {
 
     private void setGameId(int gameId) {
         this.gameId = gameId;
-    }
-
-    public Moves getFirstMove() {
-        return firstMove;
-    }
-
-    public void setFirstMove(Moves firstMove) {
-        this.firstMove = firstMove;
     }
 
     public int getSize() {
