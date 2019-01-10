@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.model.common.player;
 
 import game.model.common.Game;
@@ -12,12 +7,21 @@ import game.model.common.Game;
  * @author Opti Pognon
  */
 public abstract class Human extends Player {
-    
+
+    /**
+     * Attributs
+     */
     public int age;
     public int id;
     public static int idPlayer =1;
-    
-    
+
+
+    /**
+     * Constructeur de Human
+     * @param name
+     * @param age
+     * @param g
+     */
     public Human(String name,int age, Game g)
     {
         super(name,g);
@@ -25,7 +29,11 @@ public abstract class Human extends Player {
         this.id = idPlayer;
         idPlayer++;
     }
-    
+
+    /**
+     * Méthode to String
+     * @return String
+     */
     @Override
     public String toString()
     {
@@ -33,12 +41,18 @@ public abstract class Human extends Player {
         return str;
     }
 
+    /**
+     * Override de la méthode Play
+     */
     @Override
     public void play()
     {
         
-    }      
+    }
 
+    /**
+     * Getters & Setters
+     */
     public int getAge() {
         return age;
     }
@@ -54,7 +68,4 @@ public abstract class Human extends Player {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
-    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.model.common.rules;
 
 import game.model.common.PlayerList;
@@ -11,7 +6,11 @@ import game.model.common.PlayerList;
  * @author Opti-Pognon
  */
 public class RulesByRandom extends Rules {
-           
+
+    /**
+     * Constructeur de RulesByRandom
+     * @param p
+     */
     public RulesByRandom(PlayerList p) 
     {
         super(p);
