@@ -6,6 +6,7 @@
 package game.model.common.rules;
 
 import game.model.common.PlayerList;
+import game.model.common.player.Human;
 
 /**
  *
@@ -19,11 +20,7 @@ public class RulesByName extends Rules{
      */
     public RulesByName(PlayerList p) {
         super(p);
-        String theLower = getLowerNameInList();
-        for (int i = 1; i < this.playerList.getSize() - 1; i++) {
-            if ( theLower == (this.playerList.getPlayer(i)).getName())
-                this.playerList.swap(0, i);
-        }
+        getFirstByLowerName();
     }
 
     /**
@@ -31,6 +28,25 @@ public class RulesByName extends Rules{
      * joueurs par rapport à leurs noms
      * @return playerList
      */
+    private PlayerList getFirstByLowerName() {
+        PlayerList sortedList = new PlayerList(this.playerList.getGame());
+        while (this.playerList.getSize() != 1) {
+           String firstSName = getLowerNameInList();
+            for (int i = 0; i < this.playerList.getSize() - 1; i++) {
+                if (this.playerList.getPlayer(i) instanceof Human) {
+                    if (firstSName == ((Human) this.playerList.getPlayer(i)).getName())
+                        this.playerList.swap(0, i);
+                }
+            }
+            sortedList.addPlayer(this.playerList.getPlayer(0));
+            this.playerList.removePlayer(this.playerList.getPlayer(0));
+        }
+        for (int i = 0; i < sortedList.getSize() - 1; i++) {
+            this.playerList.addPlayer(sortedList.getPlayer(i));
+        }
+        return this.playerList;
+    }
+
 
 
     /**
@@ -40,7 +56,7 @@ public class RulesByName extends Rules{
      */
     public String getLowerNameInList() {
         String theLower = (this.playerList.getPlayer(0).getName()) ;
-        for (int i = 0; i < this.playerList.getSize() - 1; i++) {
+        for (int i =1; i < this.playerList.getSize(); i++) {
             String currentName = (this.playerList.getPlayer(i).getName());
             int y = 0;
             while (y < currentName.length()){
@@ -51,7 +67,7 @@ public class RulesByName extends Rules{
                 else{
                     y++;
                 }
-          }
+            }
         }
         return theLower;
     }
