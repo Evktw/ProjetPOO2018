@@ -2,75 +2,68 @@ package game.model.nim.historique;
 
 import java.util.Stack;
 
-/**
- *
- * @author Opti-Pognon
- */
 
-public class HistoriqueNim{
+public class HistoriqueNim
+{
 
-    /**
-     * Attributs
-     */
     private Stack<MoveNim> stack;
 
-    private String winner;                                      // Gagnant de la partie
-    private int gameId;                                         // Identifiant de la partie correspondant à l'historique
-    private int size;                                           // Taille de l'Historique
+    private String winner;
+    private int gameId;
 
-    /**
-     * Constructeur
-     */
-    public HistoriqueNim(int id){
+    public HistoriqueNim(int id)
+    {
         this.gameId = id;
         this.stack = new Stack<MoveNim>();
-        this.size = this.stack.size();
     }
 
-    /**
-     * Méthode permettant d'empiler un coup dans l'historique
-     */
-    public void push (MoveNim move){
+    public void push(MoveNim move)
+    {
         this.stack.push(move);
-        this.size++;
     }
-
-
-    /**
-     * Méthode permettant d'afficher l'historique
-     */
-    private void afficheHistorique(Stack s){
-        while(!s.isEmpty()) {
-            System.out.println(s.pop());
-            afficheHistorique(s);
+    
+    public MoveNim pop()
+    {
+        return this.stack.pop();
+    }        
+    
+    public MoveNim peek()
+    {
+        return this.stack.peek();
+    }        
+    
+    private void afficheHistorique()
+    {
+        while(!this.stack.isEmpty())
+        {
+            System.out.println(this.stack.peek());
+            this.stack.pop();
         }
         System.out.println("Fin de l'Historique");
     }
 
-    /**
-     * Getters & Setters
-     */
-    private String getWinner() {
+    private String getWinner()
+    {
         return winner;
     }
 
-    private void setWinner(String winner) {
+    private void setWinner(String winner)
+    {
         this.winner = winner;
     }
 
-    private int getGameId() {
+    private int getGameId() 
+    {
         return gameId;
     }
 
-    private void setGameId(int gameId) {
+    private void setGameId(int gameId)
+    {
         this.gameId = gameId;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
+    public int getSize() 
+    {
+        return this.stack.size();
     }
 }

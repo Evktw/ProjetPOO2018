@@ -2,26 +2,16 @@ package game.model.common.rules;
 
 import game.model.common.PlayerList;
 import game.model.common.player.Human;
-/**
- *
- * @author Opti-Pognon
- */
-public class RulesByAge extends Rules {
 
-    /**
-     * Constructeur de RulesByAge
-     * @param p
-     */
+public class RulesByAge extends Rules
+{
+
     public RulesByAge(PlayerList p)
     {
         super(p);
         getFirstByLowerAge();
     }
 
-    /**
-     * Méthode permettant de trier la liste des joueurs en fonction de l'age
-     * @return playerList
-     */
     private PlayerList getFirstByLowerAge() {
         PlayerList sortedList = new PlayerList(this.playerList.getGame());
         while (this.playerList.getSize() != 1) {
@@ -41,10 +31,6 @@ public class RulesByAge extends Rules {
         return this.playerList;
     }
 
-    /**
-     * Méthode permettant de définir l'age minimum d'une liste d'ages de joueurs
-     * @return age
-     */
     private int getLowerAgeInList() {
         int age = -1;
         for (int l=1; l< this.playerList.getSize(); l++) {

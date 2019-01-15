@@ -3,24 +3,23 @@ package game.ihm.graphic;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
+import javax.swing.JPanel;
 
-/**
- *
- * @author Opti-Pognon
- */
+
 public class Interface {
     
-    public static void Interface()
+    public static void ShowInterface()
     {
         JMenuBar menuBar;
         JMenuItem menu,parameters,leave;
+        JPanel panel;
         //JMenuItem submenuItem1,submenuItem2;
 
         JFrame myLayout = new JFrame("Layout général");
@@ -70,18 +69,20 @@ public class Interface {
         //Parametrage de la frame
         myLayout.setJMenuBar(menuBar);
         
-        //myLayout.setPreferredSize(new Dimension(700,700));
-        myLayout.setMaximumSize(new Dimension(700,700));
-        myLayout.setMinimumSize(new Dimension(700,700));
+        panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        
+        panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,3));
+        
+        myLayout.add(panel);
+        myLayout.getContentPane().setBackground(Color.white);
+        myLayout.setPreferredSize(new Dimension(800,800));
+        myLayout.setMaximumSize(new Dimension(800,800));
+        myLayout.setMinimumSize(new Dimension(800,800));
         myLayout.setVisible(true);
-        //myLayout.pack();
+        myLayout.pack();
         myLayout.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         myLayout.setLocationRelativeTo(null);
-        
-        //Pas forcément utile
-        myLayout.getContentPane().setBackground(Color.white);
-        
-        
         
         
         
@@ -93,7 +94,7 @@ public class Interface {
             {
                 public void run()
                 {
-                    Interface();
+                    ShowInterface();
                 }        
             }
         );

@@ -1,21 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.model.nim;
 import game.model.common.PlayerList;
 import game.model.common.player.HumanNim;
 import game.model.common.rules.Rules;
-import game.model.common.rules.RulesByAge;
-import game.model.common.rules.RulesByName;
-import game.model.common.rules.RulesByRandom;
 
-
-/**
- *
- * @author Opti-Pognon
- */
 
 public class testNim {
     
@@ -26,14 +13,14 @@ public class testNim {
         PlayerList p = new PlayerList(nim);
         Rules r;
         
-        HumanNim h = new HumanNim("jean",12,nim);
-        HumanNim c = new HumanNim("rene",25,nim);
-        HumanNim a = new HumanNim("natasha",50,nim);
-        HumanNim b = new HumanNim("cecile",35,nim);
-        HumanNim d = new HumanNim("emma",40,nim);
-        HumanNim e = new HumanNim("papouasie",30,nim);
-        HumanNim f = new HumanNim("elu",70,nim);
-        HumanNim g = new HumanNim("osymentopias",2,nim);
+        HumanNim h = new HumanNim("J1",12,nim);
+        HumanNim c = new HumanNim("J2",25,nim);
+        HumanNim a = new HumanNim("J3",50,nim);
+        HumanNim b = new HumanNim("J4",35,nim);
+        HumanNim d = new HumanNim("J5",40,nim);
+        HumanNim e = new HumanNim("J6",30,nim);
+        HumanNim f = new HumanNim("J7",70,nim);
+        HumanNim g = new HumanNim("J8",2,nim);
         
         
         
@@ -46,9 +33,10 @@ public class testNim {
         p.addPlayer(f);
         p.addPlayer(g);
         
+        /*
         System.out.println("LISTE AVANT TRIE \n" + p.toStringAllPlayers());
-        
-        
+        */
+        /*
         
         System.out.println("\n\n\n\nLISTE APRES TRIE PAR NOM \n" + p.toStringAllPlayers());
         
@@ -61,6 +49,8 @@ public class testNim {
         System.out.println("\n\n\n\nLISTE APRES TRIE PAR ALEATOIRE \n" + p.toStringAllPlayers());
         
         r = new RulesByRandom(p);
+
+        */
         
         nim = new Nim(p,1,10);
         

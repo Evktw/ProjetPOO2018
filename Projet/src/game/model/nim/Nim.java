@@ -19,16 +19,10 @@ import game.model.nim.historique.MoveNim;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Opti-Pognon
- */
 
-public class Nim extends Game {
+public class Nim extends Game 
+{
 
-    /**
-     * Attributs
-     */
     public boolean isPlaying;
     public int nbMatchstickTotal;
     public int nbPerTurn;
@@ -45,14 +39,13 @@ public class Nim extends Game {
         this.setPlayerList(PlayerListFactory());
     }  
   
-    //Voir pour eventuellement divisé le NimGame en méthode plus petite
     
     public void NimGame() throws Exception
     {
         if(this.playerList.getSize() > this.getNbMaxJoueurs())
-            throw new Exception("Il y a trop de joueurs");          //Voir ce que l'on fait dans ce cas la
+            throw new Exception("Il y a trop de joueurs");
         else if(this.playerList.getSize() < this.getNbMinJoueurs())
-            throw new Exception("Il n'y a pas assez de joueurs");   //Voir ce que l'on fait dans ce cas la
+            throw new Exception("Il n'y a pas assez de joueurs");
         
         Scanner sc = new Scanner(System.in);
         this.mkID = mkID+1;
@@ -64,7 +57,7 @@ public class Nim extends Game {
         
         do
         {    
-            System.out.println("Comment decidez vous que le joueur commence ? Choisissez une des réponses suivante : \n- 1 : age\n- 2 : nom\n- 3 : hasard\n \nVotre reponse :");
+            System.out.println("Comment decidez vous que le joueur commence ? Choisissez une des réponses suivante : \n- 1 : Age\n- 2 : Hasard\n- 3 : Nom\n \nVotre reponse :");
                 resultat = sc.nextInt();
                 
             if(resultat != 1 && resultat != 2 && resultat != 3)
@@ -90,6 +83,8 @@ public class Nim extends Game {
                 break;
         }
         
+        System.out.println("Voici l'ordre dans lequel les joueurs vont jouer" + this.playerList.toStringAllPlayers() + ": \n");
+        
         do 
         {    
             System.out.println("Combien d'allumettes au total choisissez vous ?");
@@ -103,53 +98,85 @@ public class Nim extends Game {
         }
         while(this.nbMatchstickTotal < nbPerTurn);
         
+        System.out.println("----------------------------------------------------------------");
+        
         do
         {   
             int i = this.playerList.getIdlist();
             
             System.out.println("\nC'est à " + this.playerList.getPlayer(i).getName() + " de jouer\n");
             
-            System.out.println("Il y a actuellement " + this.nbMatchstickTotal + " Allumettes \n \n \t Combien souhaitez vous en enlever ?");
+            System.out.println("Il y a actuellement " + this.nbMatchstickTotal + " Allumettes \n \n \t Combien souhaitez vous en enlever ? -Ecrivez 0 pour depiler-");
+            
             if(this.playerList.getPlayer(i) instanceof PlayerNim)
             {
+                
                int nbMatchRemoved = (((PlayerNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn));
-               MoveNim daMove = new MoveNim(nbMatchRemoved, (this.playerList.getPlayer(i).getName()), (this.nbMatchstickTotal-nbMatchRemoved));
-               GameMoves.push(daMove);
-               this.nbMatchstickTotal = (this.nbMatchstickTotal - nbMatchRemoved);
-            }    
+               
+               if(nbMatchRemoved == -1)
+               {
+                   if(GameMoves.getSize() == 0)
+                   {
+                       System.out.println("\n C'est le premier coup vous ne pouvez pas depiler");
+                       
+                       System.out.println("----------------------------------------------------------------");
+                   }   
+                   else
+                   {    
+                       this.nbMatchstickTotal += GameMoves.pop().getSpentMatches();
+                       this.playerList.turnBack();
+                       System.out.println("----------------------------------------------------------------");
+                   }   
+               }    
+               else
+               {
+                   this.nbMatchstickTotal -= nbMatchRemoved;
+                   MoveNim move = new MoveNim(nbMatchRemoved, (this.playerList.getPlayer(i).getName()), (this.nbMatchstickTotal-nbMatchRemoved));
+                   GameMoves.push(move);
+                   this.playerList.changeTurn();
+                   
+                   if(this.nbMatchstickTotal <= 0)
+                   {
+                        this.nbMatchstickTotal = 0;
+                        System.out.println(this.playerList.getPlayer(i).getName() + " à perdu");
+                   }    
             
-            if(this.nbMatchstickTotal <= 0)
-            {
-                this.nbMatchstickTotal = 0;
-                System.out.println(this.playerList.getPlayer(i).getName() + " à perdu");
+                   System.out.println("----------------------------------------------------------------");
+               }    
+               
             }    
-            
-            this.playerList.changeTurn();
+    
         }    
         while(this.isPlaying == true && this.nbMatchstickTotal > 0);
     }        
 
-    public boolean isIsPlaying() {
+    public boolean isIsPlaying()
+    {
         return isPlaying;
     }
 
-    public void setIsPlaying(boolean isPlaying) {
+    public void setIsPlaying(boolean isPlaying) 
+    {
         this.isPlaying = isPlaying;
     }
 
-    public int getNbMatchstickTotal() {
+    public int getNbMatchstickTotal() 
+    {
         return nbMatchstickTotal;
     }
 
-    public void setNbMatchstickTotal(int nbMatchstickTotal) {
+    public void setNbMatchstickTotal(int nbMatchstickTotal) 
+    {
         this.nbMatchstickTotal = nbMatchstickTotal;
     }
 
-    public int getNbPerTurn() {
+    public int getNbPerTurn()
+    {
         return nbPerTurn;
     }
 
-    public void setNbPerTurn(int nbPerTurn) {
+    public void setNbPerTurn(int nbPerTurn) 
+    {
         this.nbPerTurn = nbPerTurn;
     }
     
@@ -161,7 +188,8 @@ public class Nim extends Game {
     }
 
     @Override
-    public void addCpuInGame() {
+    public void addCpuInGame() 
+    {
         CpuNim c = new CpuNim(this);
         this.playerList.addPlayer(c);
     }

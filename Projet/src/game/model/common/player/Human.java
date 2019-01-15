@@ -2,26 +2,13 @@ package game.model.common.player;
 
 import game.model.common.Game;
 
-/**
- *
- * @author Opti Pognon
- */
-public abstract class Human extends Player {
+public abstract class Human extends Player
+{
 
-    /**
-     * Attributs
-     */
     public int age;
     public int id;
     public static int idPlayer =1;
 
-
-    /**
-     * Constructeur de Human
-     * @param name
-     * @param age
-     * @param g
-     */
     public Human(String name,int age, Game g)
     {
         super(name,g);
@@ -30,10 +17,6 @@ public abstract class Human extends Player {
         idPlayer++;
     }
 
-    /**
-     * Méthode to String
-     * @return String
-     */
     @Override
     public String toString()
     {
@@ -41,18 +24,6 @@ public abstract class Human extends Player {
         return str;
     }
 
-    /**
-     * Override de la méthode Play
-     */
-    @Override
-    public void play()
-    {
-        
-    }
-
-    /**
-     * Getters & Setters
-     */
     public int getAge() {
         return age;
     }
