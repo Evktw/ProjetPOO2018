@@ -18,7 +18,7 @@ public class Interface {
     public static void ShowInterface()
     {
         JMenuBar menuBar;
-        JMenuItem menu,parameters,leave;
+        JMenuItem newGame,menu,parameters,credits,leave;
         JPanel panel;
         //JMenuItem submenuItem1,submenuItem2;
 
@@ -32,10 +32,6 @@ public class Interface {
         menu.setMnemonic(KeyEvent.VK_A);
         menu.getAccessibleContext().setAccessibleDescription("Menu du programme");
         
-        //submenu
-        parameters = new JMenu("Paramètres");
-        parameters.setMnemonic(KeyEvent.VK_S);
-        
         //IL FAUDRA AJOUTER DES SUBMENU A PARAMETRE
         /*
         //item du submenu
@@ -44,19 +40,23 @@ public class Interface {
         
         submenuItem2 = new JMenuItem("1er item du submenu");
         submenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
-        
-
-        //Ajout des submenu dans le menu
-        submenu.add(submenuItem1);
-        submenu.add(submenuItem2);
         */
-        
-        //submenu 2
-        leave = new JMenu("Quitter");
+
+        newGame = new JMenuItem("Nouvelle Partie");
+        newGame.setMnemonic(KeyEvent.VK_S);
+
+        parameters = new JMenuItem("Paramètres");
+        parameters.setMnemonic(KeyEvent.VK_S);
+
+        credits = new JMenuItem("Crédits");
+        credits.setMnemonic(KeyEvent.VK_S);
+
+        leave = new JMenuItem("Quitter");
         leave.setMnemonic(KeyEvent.VK_S);
-        
-        //ajout du submenu dans le menu
+
+        menu.add(newGame);
         menu.add(parameters);
+        menu.add(credits);
         menu.add(leave);
         
         //Ajouter le menu dans la menubar
