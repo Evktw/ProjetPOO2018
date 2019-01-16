@@ -3,14 +3,9 @@ package game.ihm.graphic;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
 public class Interface {
@@ -18,7 +13,7 @@ public class Interface {
     public static void ShowInterface()
     {
         JMenuBar menuBar;
-        JMenuItem newGame,menu,parameters,credits,leave;
+        JMenuItem newGame,menu,parameters,credits, playersList, leave;
         JPanel panel;
         //JMenuItem submenuItem1,submenuItem2;
 
@@ -31,16 +26,7 @@ public class Interface {
         menu = new JMenu("Menu");
         menu.setMnemonic(KeyEvent.VK_A);
         menu.getAccessibleContext().setAccessibleDescription("Menu du programme");
-        
-        //IL FAUDRA AJOUTER DES SUBMENU A PARAMETRE
-        /*
-        //item du submenu
-        submenuItem1 = new JMenuItem("1er item du submenu");
-        submenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
-        
-        submenuItem2 = new JMenuItem("1er item du submenu");
-        submenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
-        */
+
 
         newGame = new JMenuItem("Nouvelle Partie");
         newGame.setMnemonic(KeyEvent.VK_S);
@@ -49,14 +35,18 @@ public class Interface {
         parameters.setMnemonic(KeyEvent.VK_S);
 
         credits = new JMenuItem("Crédits");
-        credits.setMnemonic(KeyEvent.VK_S);
+        credits.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+
+        playersList = new JMenuItem("Crédits");
+        playersList.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
 
         leave = new JMenuItem("Quitter");
         leave.setMnemonic(KeyEvent.VK_S);
 
         menu.add(newGame);
         menu.add(parameters);
-        menu.add(credits);
+        parameters.add(playersList);
+        parameters.add(credits);
         menu.add(leave);
         
         //Ajouter le menu dans la menubar
