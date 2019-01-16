@@ -1,6 +1,7 @@
 package game.model.common.rules;
 
 import game.model.common.PlayerList;
+import game.model.common.player.Human;
 
 public class RulesByName extends Rules
 {
@@ -17,7 +18,7 @@ public class RulesByName extends Rules
      * joueurs par rapport à leurs noms
      * @return playerList
      */
-    
+    /*
     private PlayerList getFirstByLowerName() {
         PlayerList sortedList = new PlayerList(this.playerList.getGame());
         while (this.playerList.getSize() != 1) {
@@ -35,7 +36,7 @@ public class RulesByName extends Rules
         }
         return this.playerList;
     }
-    
+    */
 
 
     /**
@@ -43,7 +44,7 @@ public class RulesByName extends Rules
      * une liste de nom par rapport à un tri alphabétique
      * @return theLower
      */
-    
+    /*
     private String getLowerNameInList() {
         String theLower = (this.playerList.getPlayer(0).getName().toLowerCase()) ;
         for (int i =1; i < this.playerList.getSize(); i++) {
@@ -55,6 +56,40 @@ public class RulesByName extends Rules
         }
         return theLower;
     }
+    */
+    
+    
+    private PlayerList getFirstByLowerName() 
+    {     
+        int id = 0;
+
+        while(id < this.playerList.getSize())
+        {
+            String lowername = ((Human) this.playerList.getPlayer(id)).getName();
+            
+            if(this.playerList.getPlayer(id) instanceof Human)
+            {
+                for(int i = 0; i < this.playerList.getSize(); i++)
+                {
+                    if(this.playerList.getPlayer(i) instanceof Human)
+                    {
+                        if(((Human) this.playerList.getPlayer(i)).getName().charAt(0) < lowername.charAt(0))
+                        {
+                            lowername = ((Human) this.playerList.getPlayer(i)).getName();
+                            this.playerList.swap(id,i);
+                        }    
+                    }    
+                }    
+            }    
+            
+            id++;
+        }    
+        
+        this.playerList.reverse();
+        
+        return this.playerList;
+    }
+    
     
     
     

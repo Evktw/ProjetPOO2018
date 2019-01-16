@@ -93,6 +93,11 @@ public class PlayerList
     {
         Collections.shuffle(this.playerList);
     }
+    
+    public void reverse()
+    {
+        Collections.reverse(this.playerList);
+    }        
 
     public boolean swap(int id1, int id2) 
     {
