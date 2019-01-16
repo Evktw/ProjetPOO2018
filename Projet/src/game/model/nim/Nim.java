@@ -83,7 +83,7 @@ public class Nim extends Game
                 break;
         }
         
-        System.out.println("Voici l'ordre dans lequel les joueurs vont jouer" + this.playerList.toStringAllPlayers() + ": \n");
+        System.out.println("Voici l'ordre dans lequel les joueurs vont jouer :" + this.playerList.toStringAllPlayers() + "\n");
         
         do 
         {    
@@ -98,7 +98,7 @@ public class Nim extends Game
         }
         while(this.nbMatchstickTotal < nbPerTurn);
         
-        System.out.println("----------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------");
         
         do
         {   
@@ -119,13 +119,13 @@ public class Nim extends Game
                    {
                        System.out.println("\n C'est le premier coup vous ne pouvez pas depiler");
                        
-                       System.out.println("----------------------------------------------------------------");
+                       System.out.println("------------------------------------------------------------------------------------------------");
                    }   
                    else
                    {    
                        this.nbMatchstickTotal += GameMoves.pop().getSpentMatches();
                        this.playerList.turnBack();
-                       System.out.println("----------------------------------------------------------------");
+                       System.out.println("------------------------------------------------------------------------------------------------");
                    }   
                }    
                else
@@ -133,6 +133,9 @@ public class Nim extends Game
                    this.nbMatchstickTotal -= nbMatchRemoved;
                    MoveNim move = new MoveNim(nbMatchRemoved, (this.playerList.getPlayer(i).getName()), (this.nbMatchstickTotal-nbMatchRemoved));
                    GameMoves.push(move);
+                   
+                   System.out.println("\n" + this.playerList.getPlayer(i).getName() + " à retiré " + nbMatchRemoved + " alumettes \n");
+                   
                    this.playerList.changeTurn();
                    
                    if(this.nbMatchstickTotal <= 0)
@@ -141,7 +144,7 @@ public class Nim extends Game
                         System.out.println(this.playerList.getPlayer(i).getName() + " à perdu");
                    }    
             
-                   System.out.println("----------------------------------------------------------------");
+                   System.out.println("-----------------------------------------------------------------------------------------------");
                }    
                
             }

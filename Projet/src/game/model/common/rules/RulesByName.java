@@ -11,13 +11,13 @@ public class RulesByName extends Rules
         getFirstByLowerName();
     }
 
-    /*
+    
     /**
      * Méthode permettant de trier alphabétiquement une liste de
      * joueurs par rapport à leurs noms
      * @return playerList
      */
-    /*
+    
     private PlayerList getFirstByLowerName() {
         PlayerList sortedList = new PlayerList(this.playerList.getGame());
         while (this.playerList.getSize() != 1) {
@@ -35,7 +35,7 @@ public class RulesByName extends Rules
         }
         return this.playerList;
     }
-    */
+    
 
 
     /**
@@ -43,7 +43,7 @@ public class RulesByName extends Rules
      * une liste de nom par rapport à un tri alphabétique
      * @return theLower
      */
-    /*
+    
     private String getLowerNameInList() {
         String theLower = (this.playerList.getPlayer(0).getName().toLowerCase()) ;
         for (int i =1; i < this.playerList.getSize(); i++) {
@@ -56,46 +56,10 @@ public class RulesByName extends Rules
         return theLower;
     }
     
-    */
     
     
-    private PlayerList getFirstByLowerName() 
-    {
-        int id;
-        
-        PlayerList sortedList = new PlayerList(this.playerList.getGame());
-        while (this.playerList.isEmpty() == false)
-        {
-            id = getIdLowerNameInList();
-            sortedList.addPlayer(this.playerList.getPlayer(id));
-            this.playerList.removePlayer(this.playerList.getPlayer(id));
-        }
-        
-        return sortedList;
-    }
     
-    private int getIdLowerNameInList() {
-        
-        String theLower = (this.playerList.getPlayer(0).getName().toLowerCase());
-        int idLowerName =-1;
-        String currentName;
-        
-        for (int i =1; i < this.playerList.getSize(); i++) 
-        {
-            
-            currentName = (this.playerList.getPlayer(i).getName().toLowerCase());
-            if(theLower.compareTo(currentName)<0){
-                theLower = currentName;
-                idLowerName = this.playerList.getIdlist();
-            }
-        }
-        
-        if(idLowerName == -1)
-            return 0;
-        else
-            return idLowerName;
-    }
-  
+ 
 }
 
 

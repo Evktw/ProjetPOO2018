@@ -20,7 +20,7 @@ public abstract class Human extends Player
     @Override
     public String toString()
     {
-        String str = "ID : " + this.getId() + " - " + "Nom : " + this.getName() + " | " + "Age : " + this.getAge() + " | " + "Win : " + this.getGameWin() + " | " + "Played : " + this.getNbGame() + '\n';
+        String str = "\nID : " + this.getId() + " - " + "Nom : " + this.getName() + " | " + "Age : " + this.getAge() + " | " + "Win : " + this.getGameWin() + " | " + "Played : " + this.getNbGame() + '\n';
         return str;
     }
 

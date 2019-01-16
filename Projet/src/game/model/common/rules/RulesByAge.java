@@ -9,9 +9,9 @@ public class RulesByAge extends Rules
     public RulesByAge(PlayerList p)
     {
         super(p);
-        getFirstByLowerAge();
+        //getFirstByLowerAge(0);
     }
-
+/*
     private PlayerList getFirstByLowerAge() {
         PlayerList sortedList = new PlayerList(this.playerList.getGame());
         while (this.playerList.getSize() != 1) {
@@ -48,5 +48,32 @@ public class RulesByAge extends Rules
         }
             return age;
         }
+
+*/
+    /*
+    private PlayerList getFirstByLowerAge(int id) 
+    {      
+        int lowerage;
+        
+        if(this.playerList.getSize() == id)
+        {
+            return this.playerList;
+        }      
+        
+        if(this.playerList.getPlayer(id) instanceof Human)
+        {    
+            lowerage = ((Human)this.playerList.getPlayer(id)).getAge();
+            
+            if(((Human)this.playerList.getPlayer(id+1)).getAge() < lowerage)
+            {
+                this.playerList.swap(id, id)
+            }    
+            
+            getFirstByLowerAge(id+1);
+            
+                
+        }     
+    }
+    */
 }    
 

@@ -17,7 +17,7 @@ public abstract class Cpu extends Player {
     @Override
     public String toString()
     {
-        String str = " \n Nom : " + this.getName() + " | " + "Win : " + this.getGameWin() + " | " + "Played : " + this.getNbGame() + '\n';
+        String str = "\nNom : " + this.getName() + " | " + "Win : " + this.getGameWin() + " | " + "Played : " + this.getNbGame() + '\n';
         return str;
     }
     
@@ -29,14 +29,17 @@ public abstract class Cpu extends Player {
         Random rnd = new Random();
         int val = rnd.nextInt(8);
         
+        
         if(NAME_USED[val] == false)
         {
             NAME_USED[val] = true;
-            str += "BOT_" +CPUNAMES[val];
+            str += "BOT_" + CPUNAMES[val];
         }
         else
-            ChooseCpuName();
-
+            str = ChooseCpuName();
+        
+        
+        
         return str;
     }
         

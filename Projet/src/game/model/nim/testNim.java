@@ -14,14 +14,26 @@ public class testNim {
         PlayerList p = new PlayerList(nim);
         Rules r;
         
-        CpuNim a = new CpuNim(nim);
+        
+        //CpuNim a = new CpuNim(nim);
         CpuNim b = new CpuNim(nim);
-        CpuNim c = new CpuNim(nim);
+        //CpuNim c = new CpuNim(nim);
         CpuNim d = new CpuNim(nim);
-        CpuNim e = new CpuNim(nim);
+        //CpuNim e = new CpuNim(nim);
         CpuNim f = new CpuNim(nim);
-        CpuNim g = new CpuNim(nim);
+        //CpuNim g = new CpuNim(nim);
         CpuNim h = new CpuNim(nim);
+        
+        
+        HumanNim a = new HumanNim("HUMAIN1",27,nim);
+        //HumanNim b = new HumanNim("HUMAIN2",2,nim);
+        HumanNim c = new HumanNim("HUMAIN3",32,nim);
+        //HumanNim d = new HumanNim("HUMAIN4",29,nim);
+        HumanNim e = new HumanNim("HUMAIN5",1,nim);
+        //HumanNim f = new HumanNim("HUMAIN6",79,nim);
+        HumanNim g = new HumanNim("HUMAIN7",7,nim);
+        //HumanNim h = new HumanNim("HUMAIN8",27,nim);
+        
         
         p.addPlayer(a);
         p.addPlayer(b);
