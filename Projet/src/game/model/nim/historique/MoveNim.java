@@ -17,6 +17,10 @@ public class MoveNim
         compteur++;
     }
 
+    /**
+     * Getters & Setters
+     */
+     
     public int getIdMove()
     {
         return idMove;

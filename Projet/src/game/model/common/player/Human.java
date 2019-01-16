@@ -24,6 +24,10 @@ public abstract class Human extends Player
         return str;
     }
 
+    /**
+     * Getters & Setters
+     */
+    
     public int getAge() {
         return age;
     }

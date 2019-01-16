@@ -20,6 +20,10 @@ public abstract class Player
         this.game = game;
     }
 
+    /**
+     * Getters & Setters
+     */
+    
     public String getName()
     { 
         return name; 

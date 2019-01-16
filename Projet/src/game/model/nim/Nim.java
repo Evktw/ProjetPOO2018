@@ -111,7 +111,7 @@ public class Nim extends Game
             if(this.playerList.getPlayer(i) instanceof PlayerNim)
             {
                 
-               int nbMatchRemoved = (((PlayerNim)this.playerList.getPlayer(i)).play(this.nbMatchstickTotal, this.nbPerTurn));
+               int nbMatchRemoved = (((PlayerNim)this.playerList.getPlayer(i)).play(this.nbPerTurn));
                
                if(nbMatchRemoved == -1)
                {
@@ -144,41 +144,13 @@ public class Nim extends Game
                    System.out.println("----------------------------------------------------------------");
                }    
                
-            }    
+            }
+                
     
         }    
         while(this.isPlaying == true && this.nbMatchstickTotal > 0);
     }        
-
-    public boolean isIsPlaying()
-    {
-        return isPlaying;
-    }
-
-    public void setIsPlaying(boolean isPlaying) 
-    {
-        this.isPlaying = isPlaying;
-    }
-
-    public int getNbMatchstickTotal() 
-    {
-        return nbMatchstickTotal;
-    }
-
-    public void setNbMatchstickTotal(int nbMatchstickTotal) 
-    {
-        this.nbMatchstickTotal = nbMatchstickTotal;
-    }
-
-    public int getNbPerTurn()
-    {
-        return nbPerTurn;
-    }
-
-    public void setNbPerTurn(int nbPerTurn) 
-    {
-        this.nbPerTurn = nbPerTurn;
-    }
+    
     
     @Override
     public void addPlayerInGame(String name, int age) 
@@ -245,6 +217,42 @@ public class Nim extends Game
         
         return p;
     }        
+
+    /**
+     * Getters & Setters
+     */
+    
+    public boolean isIsPlaying()
+    {
+        return isPlaying;
+    }
+
+    public void setIsPlaying(boolean isPlaying) 
+    {
+        this.isPlaying = isPlaying;
+    }
+
+    public int getNbMatchstickTotal() 
+    {
+        return nbMatchstickTotal;
+    }
+
+    public void setNbMatchstickTotal(int nbMatchstickTotal) 
+    {
+        this.nbMatchstickTotal = nbMatchstickTotal;
+    }
+
+    public int getNbPerTurn()
+    {
+        return nbPerTurn;
+    }
+
+    public void setNbPerTurn(int nbPerTurn) 
+    {
+        this.nbPerTurn = nbPerTurn;
+    }
+    
+    
     
 
 }

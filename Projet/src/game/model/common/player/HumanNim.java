@@ -11,7 +11,7 @@ public class HumanNim extends Human implements PlayerNim
     }
 
     @Override
-    public int play(int nbtotal, int nbperturn) 
+    public int play(int nbperturn) 
     {
         Scanner sc = new Scanner(System.in);
         int valeur;

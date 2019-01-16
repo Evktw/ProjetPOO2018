@@ -17,7 +17,16 @@ public abstract class Game
         this.playerList = new PlayerList(this);
         this.nbjoueurs[0] = min;
         this.nbjoueurs[1] = max;
-    }          
+    }     
+     
+    public abstract void addPlayerInGame(String name, int age);        
+    
+    public abstract void addCpuInGame();
+    
+    
+    /**
+     * Getters & Setters
+     */
     
     public int getNbMinJoueurs()
     {
@@ -37,7 +46,5 @@ public abstract class Game
         this.playerList = playerList;
     }
     
-    public abstract void addPlayerInGame(String name, int age);        
     
-    public abstract void addCpuInGame();
 }

@@ -42,6 +42,10 @@ public class HistoriqueNim
         System.out.println("Fin de l'Historique");
     }
 
+    /**
+     * Getters & Setters
+     */
+    
     private String getWinner()
     {
         return winner;

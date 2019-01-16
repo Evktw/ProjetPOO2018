@@ -113,6 +113,10 @@ public class PlayerList
         return this.playerList.isEmpty();
     }
          
+    /**
+     * Getters & Setters
+     */
+    
     public Game getGame()
     {
         return this.game;
