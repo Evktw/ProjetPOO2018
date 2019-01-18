@@ -1,11 +1,13 @@
 package game.ihm.graphic;
 
 import game.model.common.PlayerList;
+import game.model.common.player.Player;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.event.ChangeEvent;
@@ -16,19 +18,22 @@ public class CreationsPlayers implements ActionListener{
     private final int MAX_PLAYERS = 8;
     private final int MIN_PLAYERS = 2;
     private final int DEFAULT_NBPLAYERS = 2;
+    private JPanel[] panelJoueur = new JPanel[MAX_PLAYERS];
+    private List<Player> playerList;
 
     private JRadioButton humanButton = new JRadioButton();
     private JRadioButton cpuButton = new JRadioButton();
     private ButtonGroup species = new ButtonGroup();
     private JTextField nameIn = new JTextField("");
+    private boolean isHuman = false;
+    private JButton submit = new JButton("Valider");
     
     public Interface CreationsPlayers() {
         
         JPanel panelNbjoueurs;
-        JPanel panelJoueur[MAX_PLAYERS];
         SpinnerModel spinnerModel;
         JSpinner spinner;
-        int i = 0;
+        this.submit.addActionListener(this);
         
         panelNbjoueurs = new JPanel(new GridBagLayout());
         GridBagConstraints grid = new GridBagConstraints();
@@ -45,14 +50,11 @@ public class CreationsPlayers implements ActionListener{
             public void stateChanged(ChangeEvent ce)
             {
                 int value = (int)spinner.getValue();
-                if(value > DEFAULT_NBPLAYERS + i) {
-                    (panelJoueur[value]) = aNewChallenger(value);
-                    (panelJoueur[value]).setVisible(true);
-                    i++;
-                }    
-                else if(value < DEFAULT_NBPLAYERS + i) {
-                    (panelJoueur[value]).setVisible(false);
-                    i--;
+                for(int i = 2 ;i <= value; i++){
+                    if(!(panelJoueur[i].isVisible())){
+                        (panelJoueur[i]) = aNewChallenger(i);
+                        (panelJoueur[i]).setVisible(true);
+                    }
                 }
             }
         });
@@ -95,11 +97,17 @@ public class CreationsPlayers implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if (e.getSource()== this.humanButton){
             if(this.humanButton.isSelected()==true){
-                //joueur humain
+                isHuman = true;
             }
-            else{
-                //joueur computer
+        }
+        else if(e.getSource()==this.submit) {
+            for (int i = 1; i <= MAX_PLAYERS; i++) {
+                if ((panelJoueur[i]).isVisible()) {
+                    //On ajoute le joueur à la liste des joueurs
+                }
             }
         }
     }
+
+
 }
