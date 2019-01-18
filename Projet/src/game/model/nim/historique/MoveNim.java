@@ -8,7 +8,7 @@ public class MoveNim
     private final int idMove;
     private static int compteur = 1;
 
-    public MoveNim (int nbS, String name, int nbR)
+    public MoveNim (String name,int nbS,int nbR)
     {
         this.spentMatches = nbS;
         this.remainingMatches = nbR - this.spentMatches;

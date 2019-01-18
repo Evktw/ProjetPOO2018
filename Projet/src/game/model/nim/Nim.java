@@ -155,7 +155,7 @@ public class Nim extends Game
                else
                {
                    this.nbMatchstickTotal -= nbMatchRemoved;
-                   MoveNim move = new MoveNim(nbMatchRemoved, (this.playerList.getPlayer(idinList).getName()), (this.nbMatchstickTotal-nbMatchRemoved));
+                   MoveNim move = new MoveNim((this.playerList.getPlayer(idinList).getName()), nbMatchRemoved,(this.nbMatchstickTotal-nbMatchRemoved));
                    GameMoves.push(move);
                    
                    System.out.println("\n" + this.playerList.getPlayer(idinList).getName() + " à retiré " + nbMatchRemoved + " alumettes \n");

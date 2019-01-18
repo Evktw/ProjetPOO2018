@@ -43,7 +43,7 @@ public class testNim {
         p.addPlayer(f);
         p.addPlayer(g);
         p.addPlayer(h);
-        
+     
         nim = new Nim(p);
         
         nim.NimGame();
