@@ -18,6 +18,7 @@ import game.model.nim.historique.HistoriqueNim;
 import game.model.nim.historique.MoveNim;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 
 public class Nim extends Game 
@@ -37,7 +38,12 @@ public class Nim extends Game
     {
         this(null,min,max);
         this.setPlayerList(PlayerListFactory());
-    }  
+    }
+    
+    public Nim(PlayerList p) throws Exception
+    {
+        this(p,1,10);
+    }        
   
     
     public void NimGame() throws Exception
@@ -57,13 +63,13 @@ public class Nim extends Game
         
         do
         {    
-            System.out.println("Comment decidez vous que le joueur commence ? Choisissez une des réponses suivante : \n- 1 : Age\n- 2 : Hasard\n- 3 : Nom\n \nVotre reponse :");
+            System.out.println("Comment decidez vous que le joueur commence ? Choisissez une des réponses suivante : \n- 1 : Age\n- 2 : Hasard\n- 3 : Nom\n- 4 : Ne pas trier\nVotre reponse :");
                 resultat = sc.nextInt();
                 
-            if(resultat != 1 && resultat != 2 && resultat != 3)
-                System.out.println("\nErreur, veuillez rentrer une valeur entre 1 et 3\n");
+            if(resultat != 1 && resultat != 2 && resultat != 3 && resultat != 4)
+                System.out.println("\nErreur, veuillez rentrer une valeur entre 1 et 4\n");
         }
-        while(resultat != 1 && resultat != 2 && resultat != 3);
+        while(resultat != 1 && resultat != 2 && resultat != 3 && resultat != 4);
             
         Rules r;
         
@@ -81,6 +87,11 @@ public class Nim extends Game
                 System.out.println("=== Vous avez choisis de trier par nom ===\n");
                 r = new RulesByName(this.playerList);
                 break;
+            case 4:
+                System.out.println("=== Vous avez choisis de ne pas trier la liste ===\n");
+                break;
+            default:
+                System.err.println("ERREUR");
         }
         
         System.out.println("Voici l'ordre dans lequel les joueurs vont jouer :" + this.playerList.toStringAllPlayers() + "\n");
@@ -102,16 +113,21 @@ public class Nim extends Game
         
         do
         {   
-            int i = this.playerList.getIdlist();
+            int idinList = this.playerList.getIdlist();
             
-            System.out.println("\nC'est à " + this.playerList.getPlayer(i).getName() + " de jouer\n");
+            System.out.println("\nC'est à " + this.playerList.getPlayer(idinList).getName() + " de jouer\n");
             
             System.out.println("Il y a actuellement " + this.nbMatchstickTotal + " Allumettes \n \n \t Combien souhaitez vous en enlever ? -Ecrivez 0 pour depiler-");
             
-            if(this.playerList.getPlayer(i) instanceof PlayerNim)
+            if(this.playerList.getPlayer(idinList) instanceof PlayerNim)
             {
+                if(this.playerList.getPlayer(idinList) instanceof CpuNim)
+                {
+                    TimeUnit.SECONDS.sleep((long)1.5);
+                }    
                 
-               int nbMatchRemoved = (((PlayerNim)this.playerList.getPlayer(i)).play(this.nbPerTurn));
+                
+               int nbMatchRemoved = (((PlayerNim)this.playerList.getPlayer(idinList)).play(this.nbPerTurn));
                
                if(nbMatchRemoved == -1)
                {
@@ -122,10 +138,16 @@ public class Nim extends Game
                        System.out.println("------------------------------------------------------------------------------------------------");
                    }   
                    else
-                   {    
-                       
-                       this.nbMatchstickTotal += GameMoves.pop().getSpentMatches();
+                   {      
                        this.playerList.turnBack();
+                       this.nbMatchstickTotal += GameMoves.pop().getSpentMatches();
+                       
+                       while(this.playerList.getPlayer(this.playerList.getIdlist()) instanceof CpuNim)
+                       {
+                           this.nbMatchstickTotal += GameMoves.pop().getSpentMatches();
+                           this.playerList.turnBack();
+                       }
+                       
                        System.out.println("------------------------------------------------------------------------------------------------");
                        
                    }   
@@ -133,17 +155,26 @@ public class Nim extends Game
                else
                {
                    this.nbMatchstickTotal -= nbMatchRemoved;
-                   MoveNim move = new MoveNim(nbMatchRemoved, (this.playerList.getPlayer(i).getName()), (this.nbMatchstickTotal-nbMatchRemoved));
+                   MoveNim move = new MoveNim(nbMatchRemoved, (this.playerList.getPlayer(idinList).getName()), (this.nbMatchstickTotal-nbMatchRemoved));
                    GameMoves.push(move);
                    
-                   System.out.println("\n" + this.playerList.getPlayer(i).getName() + " à retiré " + nbMatchRemoved + " alumettes \n");
+                   System.out.println("\n" + this.playerList.getPlayer(idinList).getName() + " à retiré " + nbMatchRemoved + " alumettes \n");
                    
                    this.playerList.changeTurn();
                    
                    if(this.nbMatchstickTotal <= 0)
                    {
+                       System.out.println("-----------------------------------------------------------------------------------------------");
                         this.nbMatchstickTotal = 0;
-                        System.out.println(this.playerList.getPlayer(i).getName() + " à perdu");
+                        System.out.println("\t \t \t \t" + this.playerList.getPlayer(idinList).getName() + " à perdu");
+                        
+                        for(int i = 0; i < this.playerList.getSize(); i++)
+                        {
+                            this.playerList.getPlayer(i).incrementNbGame();
+                            
+                            if( i != idinList)
+                                this.playerList.getPlayer(i).incrementGameWin();
+                        }    
                    }    
             
                    System.out.println("-----------------------------------------------------------------------------------------------");
