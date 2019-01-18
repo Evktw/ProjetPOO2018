@@ -65,36 +65,54 @@ public class RulesByName extends Rules
 
         while(id < this.playerList.getSize())
         {
-            String lowername = ((Human) this.playerList.getPlayer(id)).getName();
-            
-            if(this.playerList.getPlayer(id) instanceof Human)
-            {
+            String lowername = this.playerList.getPlayer(id).getName();
+
                 for(int i = 0; i < this.playerList.getSize(); i++)
                 {
-                    if(this.playerList.getPlayer(i) instanceof Human)
-                    {
-                        if(((Human) this.playerList.getPlayer(i)).getName().charAt(0) < lowername.charAt(0))
+                        if(this.playerList.getPlayer(i).getName().charAt(0) < lowername.charAt(0))
                         {
-                            lowername = ((Human) this.playerList.getPlayer(i)).getName();
+                            lowername = this.playerList.getPlayer(i).getName();
                             this.playerList.swap(id,i);
                         }    
-                    }    
-                }    
-            }    
+                        else
+                        {
+                            int cpt = 1;
+                            int lengthName;
+                            
+                            if(this.playerList.getPlayer(i).getName().length() < lowername.length())
+                                lengthName = lowername.length();
+                            else
+                                lengthName =this.playerList.getPlayer(i).getName().length();
+                            
+                            while(lengthName < cpt)
+                            {
+                                if(this.playerList.getPlayer(i).getName().charAt(cpt) < lowername.charAt(cpt))
+                                {
+                                    this.playerList.swap(id,i);
+                                }                       
+                                cpt++;
+                            }    
+                            
+                        }    
+                    }   
+                
+            id++;  
+        }      
             
-            id++;
-        }    
+       this.playerList.reverse();
         
-        this.playerList.reverse();
+       return this.playerList;
+       
+    }    
         
-        return this.playerList;
-    }
+        
+}
     
     
     
     
     
  
-}
+
 
 

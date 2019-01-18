@@ -53,28 +53,30 @@ public class RulesByAge extends Rules
     
     private PlayerList getFirstByLowerAge() 
     {   
-        
         int id = 0;
 
         while(id < this.playerList.getSize())
         {
-            int lowerage = ((Human) this.playerList.getPlayer(id)).getAge();
-            
             if(this.playerList.getPlayer(id) instanceof Human)
-            {
-                for(int i = 0; i < this.playerList.getSize(); i++)
+            {    
+                int lowerage = ((Human) this.playerList.getPlayer(id)).getAge();
+
+                if(this.playerList.getPlayer(id) instanceof Human)
                 {
-                    if(this.playerList.getPlayer(i) instanceof Human)
+                    for(int i = 0; i < this.playerList.getSize(); i++)
                     {
-                        if(((Human) this.playerList.getPlayer(i)).getAge() < lowerage)
+                        if(this.playerList.getPlayer(i) instanceof Human)
                         {
-                            lowerage = ((Human) this.playerList.getPlayer(i)).getAge();
-                            this.playerList.swap(id,i);
+                            if(((Human) this.playerList.getPlayer(i)).getAge() < lowerage)
+                            {
+                                lowerage = ((Human) this.playerList.getPlayer(i)).getAge();
+                                this.playerList.swap(id,i);
+                            }    
                         }    
                     }    
-                }    
-            }    
+                }  
             
+            } 
             id++;
         }    
         
