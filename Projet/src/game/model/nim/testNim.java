@@ -14,7 +14,7 @@ public class testNim {
         PlayerList p = new PlayerList(nim);
         Rules r;
         
- /*       
+        
         //CpuNim a = new CpuNim(nim);
         //CpuNim b = new CpuNim(nim);
         CpuNim c = new CpuNim(nim);
@@ -43,7 +43,7 @@ public class testNim {
         p.addPlayer(f);
         p.addPlayer(g);
         p.addPlayer(h);
-*/        
+     
         nim = new Nim(p);
         
         nim.NimGame();
