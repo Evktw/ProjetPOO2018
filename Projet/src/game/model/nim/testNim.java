@@ -28,9 +28,9 @@ public class testNim {
         HumanNim a = new HumanNim("Colin",27,nim);
         HumanNim b = new HumanNim("Kevin",2,nim);
         HumanNim c = new HumanNim("Mathieu",32,nim);
-        HumanNim d = new HumanNim("Anabelle",29,nim);
-        HumanNim e = new HumanNim("Damien",1,nim);
-        HumanNim f = new HumanNim("Johnny",79,nim);
+        HumanNim d = new HumanNim("Anae",29,nim);
+        HumanNim e = new HumanNim("Anad",1,nim);
+        HumanNim f = new HumanNim("Anac",79,nim);
         HumanNim g = new HumanNim("Ana",7,nim);
         HumanNim h = new HumanNim("Belly",27,nim);
         
@@ -43,25 +43,6 @@ public class testNim {
         p.addPlayer(f);
         p.addPlayer(g);
         p.addPlayer(h);
-        
-        /*
-        System.out.println("LISTE AVANT TRIE \n" + p.toStringAllPlayers());
-        */
-        /*
-        
-        System.out.println("\n\n\n\nLISTE APRES TRIE PAR NOM \n" + p.toStringAllPlayers());
-        
-        r = new RulesByName(p);
-        
-        System.out.println("\n\n\n\nLISTE APRES TRIE PAR AGE \n" + p.toStringAllPlayers());
-
-        r = new RulesByAge(p);
-        
-        System.out.println("\n\n\n\nLISTE APRES TRIE PAR ALEATOIRE \n" + p.toStringAllPlayers());
-        
-        r = new RulesByRandom(p);
-
-        */
         
         nim = new Nim(p,1,10);
         

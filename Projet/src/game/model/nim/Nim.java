@@ -123,9 +123,11 @@ public class Nim extends Game
                    }   
                    else
                    {    
+                       
                        this.nbMatchstickTotal += GameMoves.pop().getSpentMatches();
                        this.playerList.turnBack();
                        System.out.println("------------------------------------------------------------------------------------------------");
+                       
                    }   
                }    
                else

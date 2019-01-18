@@ -33,7 +33,7 @@ public abstract class Cpu extends Player {
         if(NAME_USED[val] == false)
         {
             NAME_USED[val] = true;
-            str += "BOT_" + CPUNAMES[val];
+            str += CPUNAMES[val] + "_BOT";
         }
         else
             str = ChooseCpuName();

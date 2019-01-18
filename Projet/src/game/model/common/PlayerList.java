@@ -1,5 +1,7 @@
 package game.model.common;
 
+import game.model.common.player.Cpu;
+import game.model.common.player.Human;
 import game.model.common.player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -79,7 +81,20 @@ public class PlayerList
             this.setIdlist(0);
         else
             this.setIdlist(this.getIdlist()+1);
-    }  
+    } 
+    
+    //A TESTER
+    public int countNumberOfBotBehindMe()
+    {
+        int cpt = 0;
+        
+        while(this.getPlayer(this.getIdlist()) instanceof Cpu)
+        {
+            this.turnBack();
+            cpt++;
+        }    
+        return cpt;
+    }
     
     public void turnBack()
     {
@@ -87,7 +102,8 @@ public class PlayerList
             this.setIdlist(this.playerList.size()-1);
         else
             this.setIdlist(this.getIdlist()-1);
-    }        
+    }
+    
           
     public void shuffle()
     {
@@ -111,7 +127,7 @@ public class PlayerList
         this.playerList.set(id1, p2);
 
         return true;
-    }
+    }     
     
     public boolean isEmpty()
     {
