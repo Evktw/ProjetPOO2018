@@ -4,29 +4,31 @@ import game.model.common.PlayerList;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 
-public class CreationsPlayers
-{
+public class CreationsPlayers implements ActionListener{
     private final int MAX_PLAYERS = 8;
     private final int MIN_PLAYERS = 2;
     private final int DEFAULT_NBPLAYERS = 2;
 
+    private JRadioButton humanButton = new JRadioButton();
+    private JRadioButton cpuButton = new JRadioButton();
+    private ButtonGroup species = new ButtonGroup();
+    private JTextField nameIn = new JTextField("");
     
-    public Interface CreationsPlayers()
-    {
+    public Interface CreationsPlayers() {
         
-        JPanel panelNbjoueurs, panelJoueur[MAX_PLAYERS];
+        JPanel panelNbjoueurs;
+        JPanel panelJoueur[MAX_PLAYERS];
         SpinnerModel spinnerModel;
         JSpinner spinner;
+        int i = 0;
         
         panelNbjoueurs = new JPanel(new GridBagLayout());
         GridBagConstraints grid = new GridBagConstraints();
@@ -42,7 +44,6 @@ public class CreationsPlayers
             @Override
             public void stateChanged(ChangeEvent ce)
             {
-                int i = 0;
                 int value = (int)spinner.getValue();
                 if(value > DEFAULT_NBPLAYERS + i) {
                     (panelJoueur[value]) = aNewChallenger(value);
@@ -50,16 +51,12 @@ public class CreationsPlayers
                     i++;
                 }    
                 else if(value < DEFAULT_NBPLAYERS + i) {
-                    (panelJoueur[value]).setVisible(true);
+                    (panelJoueur[value]).setVisible(false);
                     i--;
-
                 }
             }
         });
-
-        
         return null;
-        
     }
 
 
@@ -69,38 +66,40 @@ public class CreationsPlayers
         JLabel name = new JLabel("Player " + value);
 
         //Bouton Humain
-        JRadioButton humanButton = new JRadioButton();
-        humanButton.setMnemonic(KeyEvent.VK_B);
-        humanButton.setSelected(true);
+        this.humanButton = new JRadioButton();
+        this.humanButton.setMnemonic(KeyEvent.VK_B);
+        this.humanButton.setSelected(true);
 
         //Bouton CPU
-        JRadioButton cpuButton = new JRadioButton();
-        ButtonGroup species = new ButtonGroup();
+        this.cpuButton = new JRadioButton();
 
         //Groupe Humain/CPU
-        species.add(humanButton);
-        species.add(cpuButton);
-        humanButton.addActionListener(this);
-        cpuButton.addActionListener(this);
+        this.species.add(humanButton);
+        this.species.add(cpuButton);
+        this.humanButton.addActionListener(this);
+        this.cpuButton.addActionListener(this);
 
-        //Input du Nom
-        JTextField nameIn = new JTextField("");
-
-        //Avatar
-        BufferedImage avatar = ImageIO.read(new File(avatar));
-        ImageIcon img = new ImageIcon(avatar);
+        this.nameIn = new JTextField("");
 
         //On ajoute tout au panel instancié plus haut :
         challenger.add(name);
         challenger.add(humanButton);
         challenger.add(cpuButton);
         challenger.add(nameIn);
-        challenger.add(img);
+        //On ajoute l'avatar est crée dans la classe IhmImage
+        challenger.add(new IhmImage());
+
+        return challenger;
     }
 
     public void actionPerformed(ActionEvent e){
         if (e.getSource()== this.humanButton){
-
+            if(this.humanButton.isSelected()==true){
+                //joueur humain
+            }
+            else{
+                //joueur computer
+            }
         }
     }
 }
