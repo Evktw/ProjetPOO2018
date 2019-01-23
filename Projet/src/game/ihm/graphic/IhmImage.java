@@ -6,22 +6,22 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class IhmImage extends JPanel{
+public class IhmImage extends JLabel{
+
+
+
 
     private static final long serialVersionUID = 1L;
     private Image avatar;
 
     IhmImage(){
-        try{
+        //avatar = ImageIO.read(new File("avatar.jpg"));
+        ImageIcon avatar = new ImageIcon("avatar.jpg");
 
-            avatar = ImageIO.read(new File("/img/avatar.jpg"));
-
-        }
-        catch(IOException err) {
-            err.printStackTrace();
-        }
         setPreferredSize( new Dimension (180, 180));
         setBackground(Color.WHITE);
+
+        this.setIcon(avatar);
     }
 
     public void paintComponent(Graphics g){

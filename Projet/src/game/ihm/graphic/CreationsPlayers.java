@@ -38,6 +38,7 @@ public class CreationsPlayers implements ActionListener{
         GridBagConstraints grid = new GridBagConstraints();
         grid.gridx = 1;
         grid.gridy = 0;
+
         
         panelNbjoueurs.setBackground(Color.green);
         
@@ -59,25 +60,23 @@ public class CreationsPlayers implements ActionListener{
                     spinner.commitEdit();
                 }catch ( java.text.ParseException e){}
                 int value = (int)spinner.getValue();
-                for(int i = 2 ;i <= value; i++){
-                    if(panelJoueur[i].isVisible() == false){
-                        if(panelJoueur[i] == null) {
-                            panelJoueur[i] = aNewChallenger(i);
+                for(int i = 2 ;i < value; i++){
+                    JPanel player = panelJoueur[i];
+                    if(player == null || player.isVisible() == false){
+                            player = aNewChallenger(i);
+                    }
+                    player.setVisible(true);
+                    if(i <= 4){
+                        grid.gridx = i - 1;
+                        grid.gridy = 0;
+                    }
+                    if(i >=5){
+                        grid.gridx = i-5;
+                        grid.gridy = 1;
                         }
-                        panelJoueur[i].setVisible(true);
-                        if(i <= 4){
-                            grid.gridx = i - 1;
-                            grid.gridy = 0;
-                            panelNbjoueurs.add(panelJoueur[i], grid);
-                        }
-                        else{
-                            grid.gridx = i-5;
-                            grid.gridy = 1;
-                            panelNbjoueurs.add(panelJoueur[i], grid);
-                            }
+                    panelNbjoueurs.add(player, grid);
                     }
                 }
-            }
         });
         completePanel.add(panelNbjoueurs);
         return completePanel ;
@@ -115,6 +114,7 @@ public class CreationsPlayers implements ActionListener{
 
         return challenger;
     }
+
 
     public void actionPerformed(ActionEvent e){
         if (e.getSource()== this.humanButton){
