@@ -26,11 +26,14 @@ public class CreationsPlayers implements ActionListener{
     private JTextField nameIn = new JTextField("");
     private boolean isHuman = false;
     private JButton submit = new JButton("Valider");
+
     
     public JPanel PlayersPanel() {
         JPanel playersPanel = new JPanel();
         SpinnerModel spinnerModel;
         JSpinner spinner;
+        panelJoueur[1]  = aNewChallenger(1);
+        panelJoueur[2]  = aNewChallenger(2);
         this.submit.addActionListener(this);
         spinnerModel = new SpinnerNumberModel(DEFAULT_NBPLAYERS,MIN_PLAYERS,MAX_PLAYERS,1);
         spinner = new JSpinner(spinnerModel);
@@ -40,9 +43,18 @@ public class CreationsPlayers implements ActionListener{
         playersPanel.setLayout(new GridBagLayout());
         GridBagConstraints gridConstraints = new GridBagConstraints();
         gridConstraints.fill = GridBagConstraints.RELATIVE;
+        gridConstraints.gridx = 0;
+        gridConstraints.gridy = 0;
 
         //On place le spinner
         playersPanel.add(spinner, gridConstraints);
+
+        gridConstraints.gridx=0;
+        gridConstraints.gridy=1;
+        playersPanel.add(panelJoueur[1]);
+        gridConstraints.gridx=1;
+        gridConstraints.gridy=2;
+        playersPanel.add(panelJoueur[2]);
 
         //En Cas de Changement de valeur sur le spinner :
         spinner.addChangeListener(new ChangeListener() {
@@ -76,6 +88,7 @@ public class CreationsPlayers implements ActionListener{
                 //changeMainPanel();
             }
         });
+
         return playersPanel;
     }
 
