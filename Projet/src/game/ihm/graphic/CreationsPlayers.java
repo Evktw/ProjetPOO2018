@@ -2,7 +2,6 @@ package game.ihm.graphic;
 
 import game.model.common.PlayerList;
 import game.model.common.player.Player;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +27,8 @@ public class CreationsPlayers implements ActionListener{
     private boolean isHuman = false;
     private JButton submit = new JButton("Valider");
     
-    public Interface CreationsPlayers() {
-        
+    public JPanel PlayersPanel() {
+        JPanel completePanel = new JPanel();
         JPanel panelNbjoueurs;
         SpinnerModel spinnerModel;
         JSpinner spinner;
@@ -37,28 +36,51 @@ public class CreationsPlayers implements ActionListener{
         
         panelNbjoueurs = new JPanel(new GridBagLayout());
         GridBagConstraints grid = new GridBagConstraints();
+        grid.gridx = 1;
+        grid.gridy = 0;
         
         panelNbjoueurs.setBackground(Color.green);
         
         spinnerModel = new SpinnerNumberModel(DEFAULT_NBPLAYERS,MIN_PLAYERS,MAX_PLAYERS,1);
         spinner = new JSpinner(spinnerModel);
         ((DefaultEditor)spinner.getEditor()).getTextField().setEditable(false);
-        
+
+        //On place le spinner
+        completePanel.add(spinner);
+
+
+        //En Cas de Changement de valeur sur le spinner :
         spinner.addChangeListener(new ChangeListener() {
             
             @Override
             public void stateChanged(ChangeEvent ce)
             {
+                try {
+                    spinner.commitEdit();
+                }catch ( java.text.ParseException e){}
                 int value = (int)spinner.getValue();
                 for(int i = 2 ;i <= value; i++){
-                    if(!(panelJoueur[i].isVisible())){
-                        (panelJoueur[i]) = aNewChallenger(i);
-                        (panelJoueur[i]).setVisible(true);
+                    if(panelJoueur[i].isVisible() == false){
+                        if(panelJoueur[i] == null) {
+                            panelJoueur[i] = aNewChallenger(i);
+                        }
+                        panelJoueur[i].setVisible(true);
+                        if(i <= 4){
+                            grid.gridx = i - 1;
+                            grid.gridy = 0;
+                            panelNbjoueurs.add(panelJoueur[i], grid);
+                        }
+                        else{
+                            grid.gridx = i-5;
+                            grid.gridy = 1;
+                            panelNbjoueurs.add(panelJoueur[i], grid);
+                            }
                     }
                 }
             }
         });
-        return null;
+        completePanel.add(panelNbjoueurs);
+        return completePanel ;
     }
 
 
@@ -88,7 +110,7 @@ public class CreationsPlayers implements ActionListener{
         challenger.add(humanButton);
         challenger.add(cpuButton);
         challenger.add(nameIn);
-        //On ajoute l'avatar est crée dans la classe IhmImage
+        //On ajoute l'avatar qui est crée dans la classe IhmImage
         challenger.add(new IhmImage());
 
         return challenger;
@@ -96,7 +118,7 @@ public class CreationsPlayers implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         if (e.getSource()== this.humanButton){
-            if(this.humanButton.isSelected()==true){
+            if(this.humanButton.isSelected()){
                 isHuman = true;
             }
         }

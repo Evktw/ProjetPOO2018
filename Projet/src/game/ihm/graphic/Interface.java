@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import game.ihm.graphic.CreationsPlayers;
 
 
 public class Interface {
@@ -14,7 +15,9 @@ public class Interface {
     {
         JMenuBar menuBar;
         JMenuItem newGame,menu,parameters,credits, playersList, leave;
+        CreationsPlayers cp = new CreationsPlayers();
         JPanel panel;
+
         //JMenuItem submenuItem1,submenuItem2;
 
         JFrame myLayout = new JFrame("Layout général");
@@ -58,10 +61,8 @@ public class Interface {
         
         //Parametrage de la frame
         myLayout.setJMenuBar(menuBar);
-        
-        panel = new JPanel();
+        panel = cp.PlayersPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        
         panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,3));
         
         myLayout.add(panel);
