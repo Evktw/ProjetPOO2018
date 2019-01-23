@@ -28,27 +28,21 @@ public class CreationsPlayers implements ActionListener{
     private JButton submit = new JButton("Valider");
     
     public JPanel PlayersPanel() {
-        JPanel completePanel = new JPanel();
-        JPanel panelNbjoueurs;
+        JPanel playersPanel = new JPanel();
         SpinnerModel spinnerModel;
         JSpinner spinner;
         this.submit.addActionListener(this);
-        
-        panelNbjoueurs = new JPanel(new GridBagLayout());
-        GridBagConstraints grid = new GridBagConstraints();
-        grid.gridx = 1;
-        grid.gridy = 0;
-
-        
-        panelNbjoueurs.setBackground(Color.green);
-        
         spinnerModel = new SpinnerNumberModel(DEFAULT_NBPLAYERS,MIN_PLAYERS,MAX_PLAYERS,1);
         spinner = new JSpinner(spinnerModel);
         ((DefaultEditor)spinner.getEditor()).getTextField().setEditable(false);
 
-        //On place le spinner
-        completePanel.add(spinner);
+        //Création de la grille et des contraintes de placement
+        playersPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gridConstraints = new GridBagConstraints();
+        gridConstraints.fill = GridBagConstraints.RELATIVE;
 
+        //On place le spinner
+        playersPanel.add(spinner, gridConstraints);
 
         //En Cas de Changement de valeur sur le spinner :
         spinner.addChangeListener(new ChangeListener() {
@@ -60,28 +54,36 @@ public class CreationsPlayers implements ActionListener{
                     spinner.commitEdit();
                 }catch ( java.text.ParseException e){}
                 int value = (int)spinner.getValue();
-                for(int i = 2 ;i < value; i++){
+                for(int i = 2 ;i < value; i++) {
                     JPanel player = panelJoueur[i];
-                    if(player == null || player.isVisible() == false){
-                            player = aNewChallenger(i);
+                    if (player == null) {
+                        player = aNewChallenger(i);
                     }
                     player.setVisible(true);
-                    if(i <= 4){
-                        grid.gridx = i - 1;
-                        grid.gridy = 0;
+
+                    // On modifie les contraintes de placement en fonction de i :
+                    if (i <= 4) {
+                        gridConstraints.gridx = i - 1;
+                        gridConstraints.gridy = 1;
                     }
-                    if(i >=5){
-                        grid.gridx = i-5;
-                        grid.gridy = 1;
-                        }
-                    panelNbjoueurs.add(player, grid);
+                    if (i >= 5) {
+                        gridConstraints.gridx = i - 5;
+                        gridConstraints.gridy = 2;
                     }
+                    playersPanel.add(player, gridConstraints);
+                    //SecondaryPanel.add(player, gridConstraints);
                 }
+                //changeMainPanel();
+            }
         });
-        completePanel.add(panelNbjoueurs);
-        return completePanel ;
+        return playersPanel;
     }
 
+   /*private JPanel changeMainPanel(JPanel old, JPanel new, SpinnerModel spinner){
+        JPanel tochange = .remove()
+
+   }
+   */
 
     private JPanel aNewChallenger(int value){
         JPanel challenger = new JPanel();
@@ -111,6 +113,9 @@ public class CreationsPlayers implements ActionListener{
         challenger.add(nameIn);
         //On ajoute l'avatar qui est crée dans la classe IhmImage
         challenger.add(new IhmImage());
+        challenger.setLayout(new BoxLayout(challenger, BoxLayout.PAGE_AXIS));
+        challenger.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,3));
+        challenger.setBackground(Color.white);
 
         return challenger;
     }

@@ -20,7 +20,7 @@ public class Interface {
 
         //JMenuItem submenuItem1,submenuItem2;
 
-        JFrame myLayout = new JFrame("Layout général");
+        JFrame mainJFrame = new JFrame("Layout général");
         
         //creation menubar
         menuBar = new JMenuBar();
@@ -60,20 +60,20 @@ public class Interface {
         menuBar.setPreferredSize(new Dimension(700,40));
         
         //Parametrage de la frame
-        myLayout.setJMenuBar(menuBar);
+        mainJFrame.setJMenuBar(menuBar);
         panel = cp.PlayersPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,3));
-        
-        myLayout.add(panel);
-        myLayout.getContentPane().setBackground(Color.white);
-        myLayout.setPreferredSize(new Dimension(800,800));
-        myLayout.setMaximumSize(new Dimension(800,800));
-        myLayout.setMinimumSize(new Dimension(800,800));
-        myLayout.setVisible(true);
-        myLayout.pack();
-        myLayout.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        myLayout.setLocationRelativeTo(null);
+
+        mainJFrame.setContentPane(panel);
+        mainJFrame.getContentPane().setBackground(Color.white);
+        mainJFrame.setPreferredSize(new Dimension(800,800));
+        mainJFrame.setMaximumSize(new Dimension(800,800));
+        mainJFrame.setMinimumSize(new Dimension(800,800));
+        mainJFrame.setVisible(true);
+        mainJFrame.pack();
+        mainJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        mainJFrame.setLocationRelativeTo(null);
         
         
         
