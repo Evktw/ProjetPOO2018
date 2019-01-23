@@ -11,7 +11,7 @@ public class RulesByAge extends Rules
         getFirstByLowerAge();
     }
     
-    private PlayerList getFirstByLowerAge() 
+    private  PlayerList getFirstByLowerAge() 
     {   
         int id = 0;
 
