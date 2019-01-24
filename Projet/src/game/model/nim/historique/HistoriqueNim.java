@@ -7,8 +7,6 @@ public class HistoriqueNim
 {
 
     private Stack<MoveNim> stack;
-
-    private String winner;
     private int gameId;
 
     public HistoriqueNim(int id)
@@ -46,16 +44,6 @@ public class HistoriqueNim
      * Getters & Setters
      */
     
-    private String getWinner()
-    {
-        return winner;
-    }
-
-    private void setWinner(String winner)
-    {
-        this.winner = winner;
-    }
-
     private int getGameId() 
     {
         return gameId;
