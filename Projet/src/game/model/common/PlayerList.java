@@ -83,22 +83,6 @@ public class PlayerList
             this.setIdlist(this.getIdlist()+1);
     } 
     
-    //A TESTER
-    public int countNumberOfBotBehindMe()
-    {
-        int cpt = 1;
-        
-        this.turnBack();
-        
-        while(this.getPlayer(this.getIdlist()) instanceof Cpu)
-        {
-            this.turnBack();
-            cpt++;
-        }    
-        
-        return cpt;
-    }
-    
     public void turnBack()
     {
         if(this.getIdlist() == 0)

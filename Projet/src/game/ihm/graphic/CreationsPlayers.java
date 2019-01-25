@@ -1,6 +1,5 @@
 package game.ihm.graphic;
 
-import game.model.common.PlayerList;
 import game.model.common.player.Player;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +17,6 @@ public class CreationsPlayers implements ActionListener{
     private final int MIN_PLAYERS = 2;
     private final int DEFAULT_NBPLAYERS = 2;
     private JPanel[] panelJoueur = new JPanel[MAX_PLAYERS];
-    private List<Player> playerList;
 
     private JRadioButton humanButton = new JRadioButton();
     private JRadioButton cpuButton = new JRadioButton();

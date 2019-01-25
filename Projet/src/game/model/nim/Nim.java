@@ -9,6 +9,7 @@ import game.model.common.Game;
 import game.model.common.PlayerList;
 import game.model.common.player.CpuNim;
 import game.model.common.player.HumanNim;
+import game.model.common.player.Player;
 import game.model.common.player.PlayerNim;
 import game.model.common.rules.Rules;
 import game.model.common.rules.RulesByAge;
@@ -21,7 +22,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 
-public class Nim extends Game 
+public final class Nim extends Game 
 {
 
     public boolean isPlaying;
@@ -34,24 +35,26 @@ public class Nim extends Game
         super(p,min,max);
     }
     
-    public Nim(int min, int max) throws Exception
+    public Nim() throws Exception
     {
-        this(null,min,max);
-        this.setPlayerList(PlayerListFactory());
+        this(null,1,8);
+        this.playerList = new PlayerList(this);
+        PlayerListFactory();
     }
     
     public Nim(PlayerList p) throws Exception
     {
-        this(p,1,10);
+        this(p,1,8);
     }        
   
     
     public void NimGame() throws Exception
-    {
+    {       
         if(this.playerList.getSize() > this.getNbMaxJoueurs())
             throw new Exception("Il y a trop de joueurs");
         else if(this.playerList.getSize() < this.getNbMinJoueurs())
             throw new Exception("Il n'y a pas assez de joueurs");
+
         
         Scanner sc = new Scanner(System.in);
         this.mkID = mkID+1;
@@ -123,10 +126,9 @@ public class Nim extends Game
             {
                 if(this.playerList.getPlayer(idinList) instanceof CpuNim)
                 {
-                    TimeUnit.SECONDS.sleep((long)1.5);
+                    TimeUnit.SECONDS.sleep((long)1.25);
                 }    
-                
-                
+
                int nbMatchRemoved = (((PlayerNim)this.playerList.getPlayer(idinList)).play(this.nbPerTurn));
                
                if(nbMatchRemoved == -1)
@@ -164,7 +166,7 @@ public class Nim extends Game
                    
                    if(this.nbMatchstickTotal <= 0)
                    {
-                       System.out.println("-----------------------------------------------------------------------------------------------");
+                        System.out.println("-----------------------------------------------------------------------------------------------");
                         this.nbMatchstickTotal = 0;
                         System.out.println("\t \t \t \t" + this.playerList.getPlayer(idinList).getName() + " à perdu");
                         
@@ -191,67 +193,67 @@ public class Nim extends Game
     @Override
     public void addPlayerInGame(String name, int age) 
     {
-        HumanNim p = new HumanNim(name,age,this);
+        Player p = new HumanNim(name,age,this);
         this.playerList.addPlayer(p);
     }
 
     @Override
     public void addCpuInGame() 
     {
-        CpuNim c = new CpuNim(this);
+        Player c = new CpuNim(this);
         this.playerList.addPlayer(c);
     }
     
-    public PlayerList PlayerListFactory()
+    public void PlayerListFactory()
     {
-        PlayerList p = new PlayerList(this);
         Scanner sc = new Scanner(System.in);
-        String c;
+        int choix;
+        int continuer;
+        String name;
+        int age;
         
-        System.out.println("================= CREATION DES JOUEURS =================");
+        System.out.println("\n================= CREATION DES JOUEURS =================\n");
+        
+        System.out.println("-----------------------------------------------------------------------------------------------");
         
         do
-        {    
-            String choix;
-            do
-            {   
-                System.out.println("Souhaitez vous ajouter un joueur ou un BOT (joueur ou bot)");
-                choix = sc.nextLine();
-
-                switch (choix) 
-                {
-                    
-                    case "joueur":
-                        System.out.println("Saisissez le nom du joueur que vous souhaitez ajouter");
-                        String n = sc.nextLine();
-                        System.out.println("Saisissez l'age du joueur que vous souhaitez ajouter");
-                        int a = sc.nextInt();
-                        this.addPlayerInGame(n,a);
-                        break;
-                        
-                    case "bot":
-                        this.addCpuInGame();
-                        break;
-                        
-                    default:
-                        System.out.println("Erreur de saisie, ecrivez joueur ou bot");
-                        break;
-                }
-                
-            }
-            while(!choix.equals("bot") && !choix.equals("joueur"));
+        {
+            System.out.println("Quel type de joueur souhaitez vous ajouter \n\t\t- 0 pour un bot \n\t\t- 1 pour un joueur");
+            choix = sc.nextInt();
             
-            System.out.println("Voici la liste des joueurs actuelle : \n" + p.toStringAllPlayers() + "\n");
-               
-            //--------------------------------------------------------------------------
-            System.out.println("Souhaitez vous continuer à ajouter des joueurs (oui ou non)");
-            //Voir pourquoi ça bug
-            c = sc.nextLine();
-            //--------------------------------------------------------------------------
+            switch(choix)
+            {
+                case 0 :            
+                    addCpuInGame();
+                    break;  
+                case 1 :
+                    
+                    System.out.println("Choisissez le nom du joueur");
+                    name = sc.next();
+                    
+                    System.out.println("Choisissez l'age du joueur");
+                    age = sc.nextInt();
+                    
+                    addPlayerInGame(name, age);
+                    break;
+                default :
+                    System.out.println("ERROR");
+                    break;
+            } 
+            
+            System.out.println("-----------------------------------------------------------------------------------------------");
+            System.out.println("Voici la liste des joueurs après ajout : " + this.playerList.toStringAllPlayers() + "\n");
+            System.out.println("-----------------------------------------------------------------------------------------------");
+            
+            System.out.println("Souhaitez vous ajouter un autre joueur ? \n\t\t- 0 pour arreter \n\t\t- 1 pour continuer");
+            continuer = sc.nextInt();
+            System.out.println("-----------------------------------------------------------------------------------------------");
         }
-        while(c.equals("oui"));
+        while(continuer == 1);
         
-        return p;
+        
+        System.out.println("\n================= FIN DE CREATION DES JOUEURS =================\n");
+        
     }        
 
     /**
