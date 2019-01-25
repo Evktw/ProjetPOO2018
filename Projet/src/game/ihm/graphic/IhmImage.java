@@ -13,7 +13,12 @@ public class IhmImage extends JLabel{
     private Image avatar;
 
     IhmImage(){
-        //avatar = ImageIO.read(new File("avatar.jpg"));
+        /*
+        try{
+            avatar = ImageIO.read(new File("avatar.jpg"));
+        }catch (IOException e){
+        }
+        */
         ImageIcon avatar = new ImageIcon("avatar.jpg");
 
         setPreferredSize( new Dimension (180, 180));

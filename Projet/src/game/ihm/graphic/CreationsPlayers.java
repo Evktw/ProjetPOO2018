@@ -26,35 +26,39 @@ public class CreationsPlayers implements ActionListener{
     private JTextField nameIn = new JTextField("");
     private boolean isHuman = false;
     private JButton submit = new JButton("Valider");
+    private int gridHeight = 3;
+    private int gridWidth = 4;
 
     
     public JPanel PlayersPanel() {
+
+        //Création de la grille et des contraintes de placement
         JPanel playersPanel = new JPanel();
+        GridLayout playersLayout = new GridLayout(gridHeight, gridWidth);
+        playersPanel.setLayout(playersLayout);
+        playersPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+
+        //Création et placement du Spinner
         SpinnerModel spinnerModel;
         JSpinner spinner;
-        panelJoueur[1]  = aNewChallenger(1);
-        panelJoueur[2]  = aNewChallenger(2);
-        this.submit.addActionListener(this);
         spinnerModel = new SpinnerNumberModel(DEFAULT_NBPLAYERS,MIN_PLAYERS,MAX_PLAYERS,1);
         spinner = new JSpinner(spinnerModel);
         ((DefaultEditor)spinner.getEditor()).getTextField().setEditable(false);
+        playersPanel.add(spinner);
 
-        //Création de la grille et des contraintes de placement
-        playersPanel.setLayout(new GridBagLayout());
+        //Création des deux premiers joueurs :
+        panelJoueur[1]  = aNewChallenger(1);
+        panelJoueur[2]  = aNewChallenger(2);
+        playersPanel.add(panelJoueur[1]);
+        playersPanel.add(panelJoueur[2]);
+        this.submit.addActionListener(this);
+
+        /*Anciennes contraintes avec GidBagLayout
         GridBagConstraints gridConstraints = new GridBagConstraints();
         gridConstraints.fill = GridBagConstraints.RELATIVE;
         gridConstraints.gridx = 0;
         gridConstraints.gridy = 0;
-
-        //On place le spinner
-        playersPanel.add(spinner, gridConstraints);
-
-        gridConstraints.gridx=0;
-        gridConstraints.gridy=1;
-        playersPanel.add(panelJoueur[1]);
-        gridConstraints.gridx=1;
-        gridConstraints.gridy=2;
-        playersPanel.add(panelJoueur[2]);
+        */
 
         //En Cas de Changement de valeur sur le spinner :
         spinner.addChangeListener(new ChangeListener() {
@@ -67,39 +71,25 @@ public class CreationsPlayers implements ActionListener{
                 }catch ( java.text.ParseException e){}
                 int value = (int)spinner.getValue();
                 for(int i = 2 ;i < value; i++) {
-                    JPanel player = panelJoueur[i];
-                    if (player == null) {
-                        player = aNewChallenger(i);
+                    if (panelJoueur[i] == null) {
+                        panelJoueur[i] = aNewChallenger(i);
                     }
-                    player.setVisible(true);
-
-                    // On modifie les contraintes de placement en fonction de i :
-                    if (i <= 4) {
-                        gridConstraints.gridx = i - 1;
-                        gridConstraints.gridy = 1;
+                    if(!panelJoueur[i].isVisible()) {
+                        panelJoueur[i].setVisible(true);
+                        playersPanel.add(panelJoueur[i]);
                     }
-                    if (i >= 5) {
-                        gridConstraints.gridx = i - 5;
-                        gridConstraints.gridy = 2;
-                    }
-                    playersPanel.add(player, gridConstraints);
-                    //SecondaryPanel.add(player, gridConstraints);
                 }
-                //changeMainPanel();
             }
         });
-
         return playersPanel;
     }
 
-   /*private JPanel changeMainPanel(JPanel old, JPanel new, SpinnerModel spinner){
-        JPanel tochange = .remove()
-
-   }
-   */
 
     private JPanel aNewChallenger(int value){
         JPanel challenger = new JPanel();
+        GridLayout datalayout = new GridLayout(0,2);
+        challenger.setLayout(datalayout);
+        challenger.applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
         JLabel name = new JLabel("Player " + value);
 
@@ -121,11 +111,13 @@ public class CreationsPlayers implements ActionListener{
 
         //On ajoute tout au panel instancié plus haut :
         challenger.add(name);
-        challenger.add(humanButton);
-        challenger.add(cpuButton);
-        challenger.add(nameIn);
-        //On ajoute l'avatar qui est crée dans la classe IhmImage
         challenger.add(new IhmImage());
+        challenger.add(new JLabel("Humain : "));
+        challenger.add(humanButton);
+        challenger.add(new JLabel("Bot : "));
+        challenger.add(cpuButton);
+        challenger.add(new JLabel("Pseudonyme : "));
+        challenger.add(nameIn);
         challenger.setLayout(new BoxLayout(challenger, BoxLayout.PAGE_AXIS));
         challenger.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,3));
         challenger.setBackground(Color.white);
