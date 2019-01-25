@@ -1,6 +1,7 @@
 package game.model.common.player;
 
 import game.model.nim.Nim;
+
 import java.util.Scanner;
 
 public class HumanNim extends Human implements PlayerNim 
